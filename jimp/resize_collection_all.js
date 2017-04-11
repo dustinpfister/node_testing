@@ -1,29 +1,100 @@
 var Jimp = require('jimp'),
 fs = require('fs'),
-filePat = /\.jpg$|\.png$/;
+filePat = /\.jpg$|\.png$/,
+quality = 25,
+size = 32;
 
-fs.readdir('./source', function (err, data) {
+var processIMG = (function () {
 
-    if (err) {
+    var fileNames = [],
 
-        console.log('Error');
-        console.log(err);
+    api = function () {
 
-    } else {
+        return fileNames;
 
-        data.forEach(function (fileName) {
+    };
 
-            if (fileName.match(filePat)) {
+    api.getFileNames = function (done) {
 
-                console.log(fileName);
+        fileNames = [];
+
+        done = done || function () {};
+
+        fs.readdir('./source', function (err, data) {
+
+            if (err) {
+
+                console.log('Error');
+                console.log(err);
+
+            } else {
+
+                data.forEach(function (fn) {
+
+                    if (fn.match(filePat)) {
+
+                        fileNames.push(fn);
+
+                    }
+
+                });
+
+                done(fileNames);
 
             }
 
         });
 
-    }
+    };
+
+    return api;
+
+}
+    ());
+
+processIMG.getFileNames(function (names) {
+
+    console.log(names);
 
 });
+
+/*
+fs.readdir('./source', function (err, data) {
+
+if (err) {
+
+console.log('Error');
+console.log(err);
+
+} else {
+
+
+data.forEach(function (fileName) {
+
+if (fileName.match(filePat)) {
+
+console.log(fileName);
+
+Jimp.read('./source/' + fileName, function (err, img) {
+
+console.log('yes');
+
+img.scaleToFit(size, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+.quality(quality)
+.write('./build/' + fileName + 'sized_' + size + '.jpg'); // save
+
+});
+
+}
+
+});
+
+
+}
+
+});
+
+ */
 
 /*
 // open a file called "test.png"
