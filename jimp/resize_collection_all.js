@@ -1,5 +1,6 @@
 var Jimp = require('jimp'),
-fs = require('fs');
+fs = require('fs'),
+filePat = /\.jpg$|\.png$/;
 
 fs.readdir('./source', function (err, data) {
 
@@ -12,7 +13,11 @@ fs.readdir('./source', function (err, data) {
 
         data.forEach(function (fileName) {
 
-            console.log(fileName);
+            if (fileName.match(filePat)) {
+
+                console.log(fileName);
+
+            }
 
         });
 
