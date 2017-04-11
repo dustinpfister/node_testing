@@ -54,7 +54,19 @@ var processIMG = (function () {
 
 processIMG.getFileNames(function (names) {
 
-    console.log(names);
+    names.forEach(function (fileName) {
+		
+        Jimp.read('./source/' + fileName, function (err, img) {
+
+            console.log(fileName + ' = okay');
+
+            img.scaleToFit(size, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+            .quality(quality)
+            .write('./build/' + fileName + 'sized_' + size + '.jpg'); // save
+
+        });
+
+    });
 
 });
 
