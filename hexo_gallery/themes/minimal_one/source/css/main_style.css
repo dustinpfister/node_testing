@@ -1,3 +1,40 @@
+body{
+
+    margin:0px;
+
+}
+
+/* header */
+#header{
+
+    position:relative;
+    background: #afafaf;
+    width : 100%;
+
+    padding-top: 50px;
+    height:150px;
+
+}
+
+#logo_area{
+
+
+    position:relative;
+    min-width:125px;
+    min-height:100px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+
+}
+
+.logo_text{
+
+    font-size:50px;
+    line-height:100px;
+
+}
+
 #page-nav{
 
 padding:5px;
