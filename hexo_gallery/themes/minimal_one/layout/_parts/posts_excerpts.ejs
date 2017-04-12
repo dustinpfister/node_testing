@@ -4,9 +4,11 @@
     <% page.posts.each(function(post){ %>
 
         <!-- title and date -->
-        <h1> <%- post.title || 'untitled post' %> </h1>
+        <h1><a href="<%- post.path %>"><%- post.title || 'untitled post' %> </a></h1>
         <p>date: <%= post.date %></p>
 
+		        <div></div>
+		
         <!-- the content of the post -->
         <div><%- post.excerpt %></div>
 
