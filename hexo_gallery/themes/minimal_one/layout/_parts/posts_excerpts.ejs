@@ -1,0 +1,19 @@
+<!-- write all posts -->
+<% if(page.posts){ %>
+
+    <% page.posts.each(function(post){ %>
+
+        <!-- title and date -->
+        <h1> <%- post.title || 'untitled post' %> </h1>
+        <p>date: <%= post.date %></p>
+
+        <!-- the content of the post -->
+        <div><%- post.excerpt %></div>
+
+    <% }) %>
+
+<% }else{ %>
+
+    <% console.log('no pages object for path: ' + page.path) %>
+
+<% } %>

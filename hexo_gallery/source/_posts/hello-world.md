@@ -4,6 +4,8 @@ date: 2017-04-11 11:00:00
 tags: [blog]
 ---
 
-Well this is going to be a pain.
+Well this is my first post, so hello world!
 
-Okay so this is the first test post
+<!-- more -->
+
+Okay so this is the first post test, and I will type some more bla bla bla.
