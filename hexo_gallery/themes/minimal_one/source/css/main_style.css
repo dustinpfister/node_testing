@@ -28,6 +28,15 @@ body{
 
 }
 
+#nav_area{
+
+    background:#00ff00;
+    min-height:50px;
+    width:100%;
+    text-align:center;
+
+}
+
 .logo_text{
 
     font-size:50px;
@@ -35,6 +44,14 @@ body{
 
 }
 
+.nav_text{
+
+    font-size:20px;
+    line-height:50px;
+
+}
+
+/* pageing */
 #page-nav{
 
 padding:5px;
