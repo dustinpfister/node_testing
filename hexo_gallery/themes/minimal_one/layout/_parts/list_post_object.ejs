@@ -3,16 +3,20 @@
 <br><br>
 
 <!-- list properties of a hexo post object-->
-<%-(function(){
+<% if(page.posts){ %>
 
-    var html = '';
+    <%-(function(){
 
-    for(var prop in page.posts.data[0]){
+        var html = '';
 
-        html += prop + '<br>';
+        for(var prop in page.posts.data[0]){
 
-    }
+            html += prop + '<br>';
 
-    return html;
+        }
 
-}()) %>
+        return html;
+
+    }()) %>
+
+<% } %>

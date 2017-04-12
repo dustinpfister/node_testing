@@ -1,14 +1,19 @@
 <!-- write all posts -->
-<% page.posts.each(function(post){ %>
+<% if(page.posts){ %>
 
-    <!-- title and date -->
-    <h1> <%- post.title || 'untitled post' %> </h1>
-    <p>date: <%= post.date %></p>
+    <% page.posts.each(function(post){ %>
 
-    <div>
+        <!-- title and date -->
+        <h1> <%- post.title || 'untitled post' %> </h1>
+        <p>date: <%= post.date %></p>
+
         <!-- the content of the post -->
-        <%- post.content %>
+        <div><%- post.content %></div>
 
-    </div>
+    <% }) %>
 
-<% }) %>
+<% }else{ %>
+
+    <% console.log('no pages object for path: ' + page.path) %>
+
+<% } %>
