@@ -1,7 +1,7 @@
 var Jimp = require("jimp");
 
-// open a file called "test.png"
-Jimp.read("./source/blues.jpg", function (err, img) {
+// open a file called "blues.jpg" in the source folder
+Jimp.read('./source/blues.jpg', function (err, img) {
 
     var sizes = [64, 128, 256],
     quality = 10;
@@ -15,11 +15,12 @@ Jimp.read("./source/blues.jpg", function (err, img) {
     // resize for all sizes
     sizes.forEach(function (size) {
 
-        // resize, and save
-        //img.resize(size, size) // resize
+        console.log('resize to: ' + size);
+
+        // resize, and save to the build folder
         img.scaleToFit(size, Jimp.AUTO, Jimp.RESIZE_BEZIER)
         .quality(quality)
-        .write('./build/blues_stf_BEZIER_q' + quality + '_' + size + '.jpg'); // save
+        .write('./build/blues_q_' + quality + '_s_' + size + '.jpg'); // save
 
     });
 

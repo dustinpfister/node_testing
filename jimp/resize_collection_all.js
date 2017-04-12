@@ -7,6 +7,8 @@ size = 32;
 var processIMG = (function () {
 
     var fileNames = [],
+    source_dir = './source',
+    index = 0,
 
     api = function () {
 
@@ -14,13 +16,14 @@ var processIMG = (function () {
 
     };
 
+    // get a list of fileNames
     api.getFileNames = function (done) {
 
         fileNames = [];
 
         done = done || function () {};
 
-        fs.readdir('./source', function (err, data) {
+        fs.readdir(source_dir, function (err, data) {
 
             if (err) {
 
@@ -47,28 +50,34 @@ var processIMG = (function () {
 
     };
 
+    api.start = function () {
+
+        this.getFileNames(function (names) {
+
+            names.forEach(function (fileName) {
+
+                Jimp.read('./source/' + fileName, function (err, img) {
+
+                    console.log(fileName + ' = okay');
+
+                    img.scaleToFit(size, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                    .quality(quality)
+                    .write('./build/' + fileName + 'sized_' + size + '.jpg'); // save
+
+                });
+
+            });
+
+        });
+
+    };
+
     return api;
 
 }
     ());
-
-processIMG.getFileNames(function (names) {
-
-    names.forEach(function (fileName) {
-		
-        Jimp.read('./source/' + fileName, function (err, img) {
-
-            console.log(fileName + ' = okay');
-
-            img.scaleToFit(size, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-            .quality(quality)
-            .write('./build/' + fileName + 'sized_' + size + '.jpg'); // save
-
-        });
-
-    });
-
-});
+	
+processIMG.start();
 
 /*
 fs.readdir('./source', function (err, data) {
