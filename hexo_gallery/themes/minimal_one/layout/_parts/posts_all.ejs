@@ -1,0 +1,14 @@
+<!-- write all posts -->
+<% page.posts.each(function(post){ %>
+
+    <!-- title and date -->
+    <h1> <%- post.title || 'untitled post' %> </h1>
+    <p>date: <%= post.date %></p>
+
+    <div>
+        <!-- the content of the post -->
+        <%- post.content %>
+
+    </div>
+
+<% }) %>

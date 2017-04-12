@@ -5,8 +5,9 @@ partial('_parts/list_post_object',{foo:'bar'})
 
 %>
 
-<% page.posts.each(function(post){ %>
+<%-
 
-<h1> <%- post.title %> </h1>
+partial('_parts/posts_all')
 
-<% }) %>
+%>
+

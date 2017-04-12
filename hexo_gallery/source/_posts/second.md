@@ -5,3 +5,7 @@ tags: [blog]
 ---
 
 This is the second post.
+
+<!-- more -->
+
+Well this is more content you see.
