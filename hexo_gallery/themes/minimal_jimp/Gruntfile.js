@@ -81,15 +81,24 @@ module.exports = function (grunt) {
 
                 console.log('Jimp read okay');
 
-                console.log(img);
-
-                done();
-
-                /*
+                console.log(img.width);
+/*
                 img.scaleToFit(size, Jimp.AUTO, Jimp.RESIZE_BEZIER)
                 .quality(quality)
                 .write(targetDir + fileName + 'sized_' + size + '.jpg'); // save
-                 */
+*/
+                if (index >= len - 1) {
+
+                    done();
+
+                } else {
+
+                    index += 1;
+
+                    api.processNext(done);
+
+                }
+
             });
 
         };
