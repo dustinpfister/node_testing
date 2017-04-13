@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     var fs = require('fs'),
-    sourcePath = '../../source/img';
+    sourcePath = '../../source/img/gallery_collections';
 
     // Default task(s).
     grunt.registerTask('default', function () {
