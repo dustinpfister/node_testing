@@ -1,6 +1,7 @@
 body{
 
     margin:0px;
+	background:#afafaf;
 
 }
 
@@ -8,7 +9,6 @@ body{
 #header{
 
     position:relative;
-    background: #afafaf;
     width : 100%;
 
     padding-top: 50px;
@@ -30,7 +30,6 @@ body{
 
 #nav_area{
 
-    background:#00ff00;
     min-height:50px;
     width:100%;
     text-align:center;
@@ -54,7 +53,6 @@ body{
 /* content */
 #content_wrap{
 
-    background:#ff0000;
     width:75%;
     margin-left:auto;
     margin-right:auto;
@@ -65,9 +63,10 @@ body{
 /* footer */
 #footer{
 
-    background:#ff00ff;
+    padding-left:25%;
     height:200px;
-    width:100%;
+    width:75%;
+    color:#5f5f5f;
 
 }
 
@@ -90,3 +89,8 @@ margin-left:20px;
 margin-right:20px;
 
 }
+
+a:link{color:#000000;}
+a:visited{color:#000000;}
+a:active{color:#000000;}
+a:hover{color:#5a5a5a;}
