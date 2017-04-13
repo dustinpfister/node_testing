@@ -84,7 +84,7 @@ module.exports = function (grunt) {
 
                 img.scaleToFit(32, Jimp.AUTO, Jimp.RESIZE_BEZIER)
                 .quality(30)
-                .write(sourceDir + '/' + fileNames[index] + 'sized_' + 32 + '.jpg', function () {
+                .write(sourceDir + '/' + fileNames[index].replace(filePat,'') + '_jimped_' + 32 + '.jpg', function () {
 
                     if (index >= len - 1) {
 
