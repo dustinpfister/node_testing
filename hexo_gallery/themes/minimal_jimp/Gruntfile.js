@@ -26,6 +26,7 @@ module.exports = function (grunt) {
     var process = (function () {
 
         var filePat = /\.jpg$|\.png$/,
+		excludePat = /_jimped_/,
         fileNames = [],
         index = 0,
         len = 0,
@@ -55,7 +56,7 @@ module.exports = function (grunt) {
 
                     data.forEach(function (fn) {
 
-                        if (fn.match(filePat)) {
+                        if (fn.match(filePat) && !fn.match(excludePat)) {
 
                             fileNames.push(fn);
 
