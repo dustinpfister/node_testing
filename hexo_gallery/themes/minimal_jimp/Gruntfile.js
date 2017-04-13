@@ -42,6 +42,7 @@ module.exports = function (grunt) {
             done = done || function () {};
 
             sourceDir = path;
+            targetDir = path + '/target';
 
             fs.readdir(sourceDir, function (err, data) {
 
@@ -81,23 +82,24 @@ module.exports = function (grunt) {
 
                 console.log('Jimp read okay');
 
-                console.log(img.width);
-/*
-                img.scaleToFit(size, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-                .quality(quality)
-                .write(targetDir + fileName + 'sized_' + size + '.jpg'); // save
-*/
-                if (index >= len - 1) {
+                img.scaleToFit(32, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                .quality(30)
+                .write(fileNames[index] + 'sized_' + 32 + '.jpg', function () {
 
-                    done();
+                    if (index >= len - 1) {
 
-                } else {
+                        done();
 
-                    index += 1;
+                    } else {
 
-                    api.processNext(done);
+                        index += 1;
 
-                }
+                        api.processNext(done);
+
+                    }
+
+                }); // save
+
 
             });
 
