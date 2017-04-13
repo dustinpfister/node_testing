@@ -1,0 +1,14 @@
+{
+  "name": "minimal_jimp",
+  "version": "1.0.0",
+  "description": "A hexo theme using JIMP for gallery image processing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo"
+  ],
+  "author": "Dustin John Pfister",
+  "license": "GPL-3.0"
+}
