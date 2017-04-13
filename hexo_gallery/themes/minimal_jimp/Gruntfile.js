@@ -1,7 +1,9 @@
 module.exports = function (grunt) {
 
     var fs = require('fs'),
-    galleryPath = '../../source/img/gallery_collections';
+    Jimp = require('jimp'),
+    galleryPath = '../../source/img/gallery_collections',
+    targetPath = '../../source/img/gallery_thumb';
 
     // Default task just lists what is in the galleryPath
     grunt.registerTask('default', function () {
@@ -26,9 +28,11 @@ module.exports = function (grunt) {
         var filePat = /\.jpg$|\.png$/,
         fileNames = [],
         index = 0,
-        sourceDir = './';
+        len = 0,
+        sourceDir = './source',
+        targetDir = './target',
 
-        var api = function () {};
+        api = function () {};
 
         // get a list of fileNames
         api.getFileNames = function (path, done) {
@@ -58,10 +62,34 @@ module.exports = function (grunt) {
 
                     });
 
+                    len = fileNames.length;
                     done(fileNames);
 
                 }
 
+            });
+
+        };
+
+        api.processNext = function (done) {
+
+            console.log('');
+            console.log('processing image ' + index + '/' + len);
+            console.log('imageName = ' + fileNames[index]);
+
+            Jimp.read(sourceDir + '/' + fileNames[index], function (err, img) {
+
+                console.log('Jimp read okay');
+
+                console.log(img);
+
+                done();
+
+                /*
+                img.scaleToFit(size, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                .quality(quality)
+                .write(targetDir + fileName + 'sized_' + size + '.jpg'); // save
+                 */
             });
 
         };
@@ -75,7 +103,7 @@ module.exports = function (grunt) {
 
         console.log('minimal_jimp process:');
 
-        done = this.async();
+        taskDone = this.async();
 
         fs.readdir(galleryPath, function (err, data) {
 
@@ -83,11 +111,16 @@ module.exports = function (grunt) {
 
             console.log(data);
 
-            process.getFileNames(galleryPath+'/'+data[0], function (names) {
+            process.getFileNames(galleryPath + '/' + data[0], function (names) {
 
                 console.log(names);
 
-                done();
+                process.processNext(function () {
+
+                    console.log('process is done');
+                    taskDone();
+
+                });
 
             });
 
