@@ -1,0 +1,12 @@
+
+<% if(page.posts){ %>
+
+    <% partial('_parts/list_post_object') %>
+    <%- partial('_parts/posts_excerpts') %>
+
+<% }else{ %>
+
+    <h1><%- page.title || 'untitled' %></h1>
+    <%- page.content %>
+
+<% } %>

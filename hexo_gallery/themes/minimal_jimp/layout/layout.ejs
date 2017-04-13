@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title><%- page.title || config.title || "untitled" %></title>
+
+        <link rel="stylesheet" href="/css/main_style.css" >
+
+    </head>
+
+    <body>
+
+        <!-- header -->
+        <div id="header">
+
+            <div id="logo_area"><span class="logo_text"><%- config.title %></span></div>
+
+            <div id="nav_area">
+
+                <span class="nav_text"><a href="/">home</a></span>
+                <span class="nav_text"><a href="/archives">archives</a></span>
+                <span class="nav_text"><a href="/gallery">gallery</a></span>
+                <span class="nav_text"><a href="/about">about</a></span>
+
+            </div>
+
+        </div>
+
+        <!-- content -->
+        <div id="content_wrap">
+
+            <%- body %>
+
+        </div>
+
+        <!-- footer -->
+        <div id="footer">
+
+            <span>Using the &#34;<%- config.theme %>&#34; <a href="https://hexo.io/">hexo.io</a> theme.</span><br>
+            <span><%- theme.copy %></span><br>
+            <span><a href="mailto:<%- theme.email %>"><%- theme.email %></a></span>
+
+        </div>
+
+    </body>
+
+</html>

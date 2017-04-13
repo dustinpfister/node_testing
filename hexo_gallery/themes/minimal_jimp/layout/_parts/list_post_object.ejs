@@ -1,0 +1,22 @@
+
+<h1>Properties of a Hexo post object:</h1>
+<br><br>
+
+<!-- list properties of a hexo post object-->
+<% if(page.posts){ %>
+
+    <%-(function(){
+
+        var html = '';
+
+        for(var prop in page.posts.data[0]){
+
+            html += prop + '<br>';
+
+        }
+
+        return html;
+
+    }()) %>
+
+<% } %>
