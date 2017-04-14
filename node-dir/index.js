@@ -2,10 +2,10 @@ var dir = require('node-dir');
 
 /*
 dir.files('./public', function(err, files) {
-    if (err) throw err;
-    console.log(files);
+if (err) throw err;
+console.log(files);
 });
-*/
+ */
 
 dir.readFiles('public', {
     match : /\.html$/
@@ -18,8 +18,20 @@ dir.readFiles('public', {
 
     //console.log('content:', content);
 
-	console.log(filename);
-	
+    var timeEls = content.match(/\<time([\s\S]*?)\>/g);
+
+    timeEls.forEach(function (time) {
+
+        if (time.match(/itemprop="dateModified"/)) {
+
+            console.log(time);
+
+        }
+
+    });
+
+    //console.log(filename);
+
     next();
 
 }, function (err, files) {
@@ -28,6 +40,6 @@ dir.readFiles('public', {
         throw err;
     }
 
-   // console.log('finished reading files:', files);
+    // console.log('finished reading files:', files);
 
 });
