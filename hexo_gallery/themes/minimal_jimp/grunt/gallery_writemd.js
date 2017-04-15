@@ -1,8 +1,10 @@
 
 
 var dir = require('node-dir'),
+fs = require('fs'),
 galleryPath = '../../source/img/gallery_collections',
 sitePath = '/img/gallery_collections',
+markdownPath = '../../source/gallery',
 
 options = {
 
@@ -155,12 +157,21 @@ exports.write = function (done) {
 
         console.log(markdown[page].filename);
 
-        if (page < markdown.length - 1) {
+        fs.writeFile(
 
-            page += 1;
-            next(markdown, done);
+            markdownPath + '/' + markdown[page].filename,
+            markdown[page].content,
+            'utf8',
+            function () {
 
-        }
+            if (page < markdown.length - 1) {
+
+                page += 1;
+                next(markdown, done);
+
+            }
+
+        });
 
     };
 
