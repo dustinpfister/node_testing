@@ -2,6 +2,7 @@
 
 var dir = require('node-dir'),
 galleryPath = '../../source/img/gallery_collections',
+sitePath = '/img/gallery_collections',
 
 options = {
 
@@ -85,7 +86,7 @@ buildDB = function (done) {
 
 },
 
-writeMD = function (done) {
+buildMD = function (done) {
 
     var collIndex = 0,
     collections = [],
@@ -105,6 +106,7 @@ writeMD = function (done) {
 
         }
         console.log('database broken to pages.');
+        console.log('');
 
         collections = Object.keys(db);
 
@@ -113,9 +115,21 @@ writeMD = function (done) {
 
             collName = collections[collIndex];
 
-            db[collName].forEach(function (page) {
+            db[collName].forEach(function (page, pageIndex) {
 
-                console.log(page);
+                console.log(collName + '_' + pageIndex + '.md');
+
+                var content = '';
+
+                page.forEach(function (img) {
+
+                    content += sitePath + '/' + collName + '/'+img.filename + '.jpg\n';
+
+                });
+
+                console.log(content);
+
+                console.log('');
 
             });
 
@@ -134,6 +148,6 @@ writeMD = function (done) {
 // write markdown files for jimped images
 exports.write = function (done) {
 
-    writeMD(done)
+    buildMD(done)
 
 };
