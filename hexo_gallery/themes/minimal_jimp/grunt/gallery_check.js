@@ -7,12 +7,13 @@ exports.check = function (done) {
     dir.readFiles(
 
         // path to read
-        'layout', 
+        '../../source/img/gallery_collections', 
 
         // options
         {
-            match : /\.ejs$/
-            //exclude : /^\./
+            match : /\.jpg$/,
+            //matchDir:/./,
+            exclude : /_jimped_/
         },
 
         // content call back
