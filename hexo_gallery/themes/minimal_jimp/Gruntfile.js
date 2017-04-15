@@ -1,6 +1,25 @@
 
 
+
 module.exports = function (grunt) {
+
+    var regMod = function (name) {
+
+        grunt.registerTask(name, function () {
+
+            done = this.async();
+
+            require('./grunt/gallery_' + name + '.js').runScript(function () {
+
+                console.log('done with script: ' + name);
+
+                done();
+
+            });
+
+        });
+
+    };
 
     grunt.registerTask('default', function () {
 
@@ -9,34 +28,40 @@ module.exports = function (grunt) {
     });
 
     // check for images
+    regMod('check');
+    /*
     grunt.registerTask('check', function () {
 
-        done = this.async();
+    done = this.async();
 
-        require('./grunt/gallery_check.js').runScript(function () {
+    require('./grunt/gallery_check.js').runScript(function () {
 
-            console.log('done with check');
+    console.log('done with check');
 
-            done();
-
-        });
+    done();
 
     });
+
+    });
+     */
 
     // process images
+    regMod('process_thum');
+    /*
     grunt.registerTask('process', function () {
 
-        done = this.async();
+    done = this.async();
 
-        require('./grunt/gallery_process_thum.js').runScript(function () {
+    require('./grunt/gallery_process_thum.js').runScript(function () {
 
-            console.log('done thum process');
+    console.log('done thum process');
 
-            done();
-
-        });
+    done();
 
     });
+
+    });
+     */
 
     // write mark down files
     grunt.registerTask('writemd', function () {
