@@ -1,4 +1,5 @@
 var fs = require('fs'),
+linkPath = '/gallery',
 markdownPath = '../../source/gallery';
 
 exports.runScript = function (done) {
@@ -13,7 +14,7 @@ exports.runScript = function (done) {
 
             if (filename != 'index.md') {
 
-                console.log(filename);
+                console.log(linkPath + '/' + filename.replace(/\.md$/, '') + '.html');
 
             }
 
