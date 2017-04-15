@@ -68,12 +68,49 @@ var buildDB = function (done) {
 
 },
 
+process = (function () {
+
+    var state = {
+
+        index : 0,
+        page : 0,
+        collection : 'foo',
+
+    },
+
+    api = function () {
+
+        return state;
+
+    };
+
+    api.reset = function () {
+
+        state = {
+
+            index : 0,
+            page : 0,
+            collection : 'foo',
+
+        }
+
+    };
+
+    api.next = function () {};
+
+    return api;
+
+}
+    ()),
+
 writeMD = function (done) {
 
     console.log('building database...');
     buildDB(function () {
 
         console.log('database done.');
+
+        process.reset();
 
         done();
 
