@@ -9,18 +9,30 @@ exports.runScript = function (done) {
     fs.readdir(markdownPath, function (err, files) {
 
         //console.log(files);
+        var content = '',
+        fn;
 
         files.forEach(function (filename) {
 
+            fn = filename.replace(/\.md$/, '');
+
             if (filename != 'index.md') {
 
-                console.log(linkPath + '/' + filename.replace(/\.md$/, '') + '.html');
+                content += '[' + fn + '](' + linkPath + '/' + fn + '.html)\n';
 
             }
 
         });
 
-        done();
+        console.log(content);
+
+        fs.writeFile(markdownPath + '/index.md', content, 'utf8', function () {
+
+            console.log('done writing index');
+
+            done();
+
+        });
 
     });
 
