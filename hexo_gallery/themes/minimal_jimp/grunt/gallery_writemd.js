@@ -85,46 +85,13 @@ buildDB = function (done) {
 
 },
 
-process = (function () {
-
-    var state = {
-
-        index : 0,
-        page : 0,
-        collection : 'foo',
-
-    },
-
-    api = function () {
-
-        return state;
-
-    };
-
-    api.reset = function () {
-
-        state = {
-
-            index : 0,
-            page : 0,
-            collection : 'foo',
-
-        }
-
-    };
-
-    api.forNext = function (next, done) {
-
-        index += 1
-
-    };
-
-    return api;
-
-}
-    ()),
-
 writeMD = function (done) {
+
+    var collIndex = 0,
+    collections = [],
+    collName = '',
+    pageIndex = 0,
+    imageIndex = 0;
 
     console.log('building database...');
     buildDB(function () {
@@ -138,9 +105,25 @@ writeMD = function (done) {
 
         }
         console.log('database broken to pages.');
-        console.log(db);
 
-        console.log(Object.keys(db).length)
+        collections = Object.keys(db);
+
+        collIndex = 0;
+        while (collIndex < collections.length) {
+
+            collName = collections[collIndex];
+
+            db[collName].forEach(function (page) {
+
+                console.log(page);
+
+            });
+
+            collIndex += 1;
+
+        }
+
+        console.log()
 
         done();
 
