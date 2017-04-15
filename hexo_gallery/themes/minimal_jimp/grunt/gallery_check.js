@@ -19,7 +19,7 @@ exports.check = function (done) {
         // content call back
         function (err, content, filename, next) {
 
-            console.log(filename);
+            //console.log(filename);
             next();
 
         },
@@ -32,6 +32,8 @@ exports.check = function (done) {
                 console.log(err);
 
             }
+			
+			console.log(files);
 
             done();
 

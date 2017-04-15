@@ -22,150 +22,164 @@ module.exports = function (grunt) {
 
     });
 
+    grunt.registerTask('process', function () {
+
+        done = this.async();
+
+        require('./grunt/gallery_process_thum.js').process(function () {
+
+            console.log('done thum process');
+
+            done();
+
+        });
+
+    });
+
 };
 
 /*
 module.exports = function (grunt) {
 
-var fs = require('fs'),
-Jimp = require('jimp'),
-galleryPath = '../../source/img/gallery_collections',
-targetPath = '../../source/img/gallery_thumb';
+    var fs = require('fs'),
+    Jimp = require('jimp'),
+    galleryPath = '../../source/img/gallery_collections',
+    targetPath = '../../source/img/gallery_thumb';
 
-// Default task just lists what is in the galleryPath
-grunt.registerTask('default', function () {
+    // Default task just lists what is in the galleryPath
+    grunt.registerTask('default', function () {
 
-console.log('minimal_jimp default grunt task:');
+        console.log('minimal_jimp default grunt task:');
 
-done = this.async();
+        done = this.async();
 
-console.log('listing gallery collection:');
-fs.readdir(galleryPath, function (err, data) {
+        console.log('listing gallery collection:');
+        fs.readdir(galleryPath, function (err, data) {
 
-console.log(data);
+            console.log(data);
 
-done();
+            done();
 
-});
+        });
 
-});
+    });
 
-var process = (function () {
+    var process = (function () {
 
-var filePat = /\.jpg$|\.png$/,
-excludePat = /_jimped_/,
-fileNames = [],
-index = 0,
-len = 0,
-sourceDir = './source',
-targetDir = './target',
+        var filePat = /\.jpg$|\.png$/,
+        excludePat = /_jimped_/,
+        fileNames = [],
+        index = 0,
+        len = 0,
+        sourceDir = './source',
+        targetDir = './target',
 
-api = function () {};
+        api = function () {};
 
-// get a list of fileNames
-api.getFileNames = function (path, done) {
+        // get a list of fileNames
+        api.getFileNames = function (path, done) {
 
-fileNames = [];
+            fileNames = [];
 
-done = done || function () {};
+            done = done || function () {};
 
-sourceDir = path;
-targetDir = path + '/target';
+            sourceDir = path;
+            targetDir = path + '/target';
 
-fs.readdir(sourceDir, function (err, data) {
+            fs.readdir(sourceDir, function (err, data) {
 
-if (err) {
+                if (err) {
 
-console.log('Error');
-console.log(err);
+                    console.log('Error');
+                    console.log(err);
 
-} else {
+                } else {
 
-data.forEach(function (fn) {
+                    data.forEach(function (fn) {
 
-if (fn.match(filePat) && !fn.match(excludePat)) {
+                        if (fn.match(filePat) && !fn.match(excludePat)) {
 
-fileNames.push(fn);
+                            fileNames.push(fn);
 
-}
+                        }
 
-});
+                    });
 
-len = fileNames.length;
-done(fileNames);
+                    len = fileNames.length;
+                    done(fileNames);
 
-}
+                }
 
-});
+            });
 
-};
+        };
 
-api.processNext = function (done) {
+        api.processNext = function (done) {
 
-console.log('');
-console.log('processing image ' + index + '/' + len);
-console.log('imageName = ' + fileNames[index]);
+            console.log('');
+            console.log('processing image ' + index + '/' + len);
+            console.log('imageName = ' + fileNames[index]);
 
-Jimp.read(sourceDir + '/' + fileNames[index], function (err, img) {
+            Jimp.read(sourceDir + '/' + fileNames[index], function (err, img) {
 
-console.log('Jimp read okay');
+                console.log('Jimp read okay');
 
-img.scaleToFit(32, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-.quality(30)
-.write(sourceDir + '/' + fileNames[index].replace(filePat, '') + '_jimped_' + 32 + '.jpg', function () {
+                img.scaleToFit(32, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                .quality(30)
+                .write(sourceDir + '/' + fileNames[index].replace(filePat, '') + '_jimped_' + 32 + '.jpg', function () {
 
-if (index >= len - 1) {
+                    if (index >= len - 1) {
 
-done();
+                        done();
 
-} else {
+                    } else {
 
-index += 1;
+                        index += 1;
 
-api.processNext(done);
+                        api.processNext(done);
 
-}
+                    }
 
-}); // save
+                }); // save
 
 
-});
+            });
 
-};
+        };
 
-return api;
+        return api;
 
-}
-());
+    }
+        ());
 
-grunt.registerTask('process', function () {
+    grunt.registerTask('process', function () {
 
-console.log('minimal_jimp process:');
+        console.log('minimal_jimp process:');
 
-taskDone = this.async();
+        taskDone = this.async();
 
-fs.readdir(galleryPath, function (err, data) {
+        fs.readdir(galleryPath, function (err, data) {
 
-console.log('geting list');
+            console.log('geting list');
 
-console.log(data);
+            console.log(data);
 
-process.getFileNames(galleryPath + '/' + data[0], function (names) {
+            process.getFileNames(galleryPath + '/' + data[0], function (names) {
 
-console.log(names);
+                console.log(names);
 
-process.processNext(function () {
+                process.processNext(function () {
 
-console.log('process is done');
-taskDone();
+                    console.log('process is done');
+                    taskDone();
 
-});
+                });
 
-});
+            });
 
-});
+        });
 
-});
+    });
 
 };
 */
