@@ -9,10 +9,29 @@ options = {
 
 },
 
-db = {};
+db = {},
+
+// break an array down into an array of arrays
+breakToPages = function (files, perPage) {
+
+    var pages = [],
+    i = 0;
+
+    perPage = perPage || 4;
+    while (i < files.length) {
+
+        pages.push(files.slice(i, i + perPage));
+
+        i += perPage;
+
+    }
+
+    return pages;
+
+},
 
 // build a database of files to make markdown files for
-var buildDB = function (done) {
+buildDB = function (done) {
 
     db = {};
 
@@ -60,8 +79,6 @@ var buildDB = function (done) {
 
         }
 
-        //console.log(db);
-
         done();
 
     });
@@ -96,7 +113,11 @@ process = (function () {
 
     };
 
-    api.next = function () {};
+    api.forNext = function (next, done) {
+
+        index += 1
+
+    };
 
     return api;
 
@@ -109,8 +130,17 @@ writeMD = function (done) {
     buildDB(function () {
 
         console.log('database done.');
+        console.log('breaking down into pages...');
 
-        process.reset();
+        for (var collection in db) {
+
+            db[collection] = breakToPages(db[collection], options.perPage);
+
+        }
+        console.log('database broken to pages.');
+        console.log(db);
+
+        console.log(Object.keys(db).length)
 
         done();
 
