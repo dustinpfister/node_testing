@@ -1,6 +1,6 @@
 
 // just simply check what is there if anything.
-exports.check = function (done) {
+exports.write = function (done) {
 
     var dir = require('node-dir');
 
@@ -11,15 +11,18 @@ exports.check = function (done) {
 
         // options
     {
-        match : /\.jpg$|\.png$/,
+        match : /_jimped_32\.jpg$|\.png$/,
         //matchDir:/./,
-        exclude : /_jimped_/
+        //exclude : /_jimped_/
     },
 
         // content call back
         function (err, content, filename, next) {
 
-        //console.log(filename);
+        var ns = filename.split('\\');
+
+        console.log(ns[ns.length - 2]);
+
         next();
 
     },
@@ -32,8 +35,6 @@ exports.check = function (done) {
             console.log(err);
 
         }
-
-        console.log(files);
 
         done();
 
