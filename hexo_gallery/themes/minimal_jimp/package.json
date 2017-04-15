@@ -12,9 +12,8 @@
   "author": "Dustin John Pfister",
   "license": "GPL-3.0",
   "dependencies": {
-    "jimp": "^0.2.27"
-  },
-  "devDependencies": {
+    "jimp": "^0.2.27",
+    "node-dir": "^0.1.16",
     "grunt": "^1.0.1"
   }
 }
