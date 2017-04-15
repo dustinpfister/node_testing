@@ -3,8 +3,8 @@
 var dir = require('node-dir'),
 galleryPath = '../../source/img/gallery_collections';
 
-// write markdown files for jimped images
-exports.write = function (done) {
+// build a database of files to make markdown files for
+var buildDB = function (done) {
 
     dir.readFiles(
 
@@ -41,5 +41,12 @@ exports.write = function (done) {
         done();
 
     });
+
+};
+
+// write markdown files for jimped images
+exports.write = function (done) {
+
+    buildDB(done);
 
 };
