@@ -53,4 +53,19 @@ module.exports = function (grunt) {
 
     });
 
+    // write mark down files
+    grunt.registerTask('index', function () {
+
+        done = this.async();
+
+        require('./grunt/gallery_index.js').build(function () {
+
+            console.log('done building index');
+
+            done();
+
+        });
+
+    });
+
 };
