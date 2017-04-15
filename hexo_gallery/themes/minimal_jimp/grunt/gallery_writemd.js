@@ -149,11 +149,32 @@ buildMD = function (done) {
 // write markdown files for jimped images
 exports.write = function (done) {
 
+    var page = 0;
+
+    next = function (markdown, done) {
+
+        console.log(markdown[page].filename);
+
+        if (page < markdown.length - 1) {
+
+            page += 1;
+            next(markdown, done);
+
+        }
+
+    };
+
     buildMD(function (markdown) {
 
         console.log('we have markdown.');
 
-        console.log(markdown);
+        //console.log(markdown);
+
+        next(markdown, function () {
+
+            done();
+
+        });
 
     });
 
