@@ -1,5 +1,5 @@
 
-
+// just simply check what is there if anything.
 exports.check = function (done) {
 
     var dir = require('node-dir');
@@ -11,7 +11,7 @@ exports.check = function (done) {
 
         // options
         {
-            match : /\.jpg$/,
+            match : /\.jpg$|\.png$/,
             //matchDir:/./,
             exclude : /_jimped_/
         },
@@ -38,11 +38,5 @@ exports.check = function (done) {
         }
 
     );
-
-};
-
-exports.foo = function (done) {
-
-    done('yeah');
 
 };
