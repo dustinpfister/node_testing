@@ -86,13 +86,15 @@ buildDB = function (done) {
 
 },
 
+// build markdown pages array
 buildMD = function (done) {
 
     var collIndex = 0,
     collections = [],
     collName = '',
     pageIndex = 0,
-    imageIndex = 0;
+    imageIndex = 0,
+    markdown = [];
 
     console.log('building database...');
     buildDB(function () {
@@ -117,19 +119,20 @@ buildMD = function (done) {
 
             db[collName].forEach(function (page, pageIndex) {
 
-                console.log(collName + '_' + pageIndex + '.md');
-
                 var content = '';
 
                 page.forEach(function (img) {
 
-                    content += sitePath + '/' + collName + '/'+img.filename + '.jpg\n';
+                    content += '![' + img.filename + '](' + sitePath + '/' + collName + '/' + img.filename + '.jpg)\n';
 
                 });
 
-                console.log(content);
+                markdown.push({
 
-                console.log('');
+                    filename : collName + '_' + pageIndex + '.md',
+                    content : content
+
+                })
 
             });
 
@@ -137,9 +140,7 @@ buildMD = function (done) {
 
         }
 
-        console.log()
-
-        done();
+        done(markdown);
 
     });
 
@@ -148,6 +149,12 @@ buildMD = function (done) {
 // write markdown files for jimped images
 exports.write = function (done) {
 
-    buildMD(done)
+    buildMD(function (markdown) {
+
+        console.log('we have markdown.');
+
+        console.log(markdown);
+
+    });
 
 };
