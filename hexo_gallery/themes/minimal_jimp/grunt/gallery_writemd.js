@@ -26,9 +26,19 @@ var buildDB = function (done) {
         function (err, content, filename, next) {
 
         var ns = filename.split('\\'),
-		collection = ns[ns.length - 2];
+        collection = ns[ns.length - 2];
 
         console.log(collection);
+
+        if (db[collection] === undefined) {
+            db[collection] = [];
+        }
+
+        db[collection].push({
+
+            foo : 'bar'
+
+        })
 
         next();
 
@@ -42,6 +52,8 @@ var buildDB = function (done) {
             console.log(err);
 
         }
+
+        console.log(db);
 
         done();
 
