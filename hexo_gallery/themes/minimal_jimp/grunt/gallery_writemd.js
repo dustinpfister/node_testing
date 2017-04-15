@@ -1,10 +1,14 @@
 
 
 var dir = require('node-dir'),
-galleryPath = '../../source/img/gallery_collections';
+galleryPath = '../../source/img/gallery_collections',
+
+db = {};
 
 // build a database of files to make markdown files for
 var buildDB = function (done) {
+
+    db = {};
 
     dir.readFiles(
 
@@ -21,9 +25,10 @@ var buildDB = function (done) {
         // content call back
         function (err, content, filename, next) {
 
-        var ns = filename.split('\\');
+        var ns = filename.split('\\'),
+		collection = ns[ns.length - 2];
 
-        console.log(ns[ns.length - 2]);
+        console.log(collection);
 
         next();
 
