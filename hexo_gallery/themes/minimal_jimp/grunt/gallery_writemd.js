@@ -3,6 +3,12 @@
 var dir = require('node-dir'),
 galleryPath = '../../source/img/gallery_collections',
 
+options = {
+
+    perPage : 2
+
+},
+
 db = {};
 
 // build a database of files to make markdown files for
@@ -28,7 +34,7 @@ var buildDB = function (done) {
         var ns = filename.split('\\'),
         collection = ns[ns.length - 2];
 
-        console.log(collection);
+        console.log(filename);
 
         if (db[collection] === undefined) {
             db[collection] = [];
@@ -36,9 +42,10 @@ var buildDB = function (done) {
 
         db[collection].push({
 
-            foo : 'bar'
+            path : filename,
+            filename : ns[ns.length - 1].replace(/\.jpg$|\.png$/, '')
 
-        })
+        });
 
         next();
 
@@ -53,7 +60,20 @@ var buildDB = function (done) {
 
         }
 
-        console.log(db);
+        //console.log(db);
+
+        done();
+
+    });
+
+},
+
+writeMD = function (done) {
+
+    console.log('building database...');
+    buildDB(function () {
+
+        console.log('database done.');
 
         done();
 
@@ -64,6 +84,6 @@ var buildDB = function (done) {
 // write markdown files for jimped images
 exports.write = function (done) {
 
-    buildDB(done);
+    writeMD(done)
 
 };
