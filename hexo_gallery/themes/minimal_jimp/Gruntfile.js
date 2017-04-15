@@ -1,21 +1,20 @@
+
+
 module.exports = function (grunt) {
 
-    var fs = require('fs'),
-    Jimp = require('jimp'),
-    galleryPath = '../../source/img/gallery_collections',
-    targetPath = '../../source/img/gallery_thumb';
-
-    // Default task just lists what is in the galleryPath
     grunt.registerTask('default', function () {
 
-        console.log('minimal_jimp default grunt task:');
+        console.log('do default task yet for minimal_jimp');
+
+    });
+
+    grunt.registerTask('check', function () {
 
         done = this.async();
 
-        console.log('listing gallery collection:');
-        fs.readdir(galleryPath, function (err, data) {
+        require('./grunt/gallery_check.js').check(function () {
 
-            console.log(data);
+            console.log('done with check');
 
             done();
 
@@ -23,121 +22,150 @@ module.exports = function (grunt) {
 
     });
 
-    var process = (function () {
+};
 
-        var filePat = /\.jpg$|\.png$/,
-		excludePat = /_jimped_/,
-        fileNames = [],
-        index = 0,
-        len = 0,
-        sourceDir = './source',
-        targetDir = './target',
+/*
+module.exports = function (grunt) {
 
-        api = function () {};
+var fs = require('fs'),
+Jimp = require('jimp'),
+galleryPath = '../../source/img/gallery_collections',
+targetPath = '../../source/img/gallery_thumb';
 
-        // get a list of fileNames
-        api.getFileNames = function (path, done) {
+// Default task just lists what is in the galleryPath
+grunt.registerTask('default', function () {
 
-            fileNames = [];
+console.log('minimal_jimp default grunt task:');
 
-            done = done || function () {};
+done = this.async();
 
-            sourceDir = path;
-            targetDir = path + '/target';
+console.log('listing gallery collection:');
+fs.readdir(galleryPath, function (err, data) {
 
-            fs.readdir(sourceDir, function (err, data) {
+console.log(data);
 
-                if (err) {
+done();
 
-                    console.log('Error');
-                    console.log(err);
+});
 
-                } else {
+});
 
-                    data.forEach(function (fn) {
+var process = (function () {
 
-                        if (fn.match(filePat) && !fn.match(excludePat)) {
+var filePat = /\.jpg$|\.png$/,
+excludePat = /_jimped_/,
+fileNames = [],
+index = 0,
+len = 0,
+sourceDir = './source',
+targetDir = './target',
 
-                            fileNames.push(fn);
+api = function () {};
 
-                        }
+// get a list of fileNames
+api.getFileNames = function (path, done) {
 
-                    });
+fileNames = [];
 
-                    len = fileNames.length;
-                    done(fileNames);
+done = done || function () {};
 
-                }
+sourceDir = path;
+targetDir = path + '/target';
 
-            });
+fs.readdir(sourceDir, function (err, data) {
 
-        };
+if (err) {
 
-        api.processNext = function (done) {
+console.log('Error');
+console.log(err);
 
-            console.log('');
-            console.log('processing image ' + index + '/' + len);
-            console.log('imageName = ' + fileNames[index]);
+} else {
 
-            Jimp.read(sourceDir + '/' + fileNames[index], function (err, img) {
+data.forEach(function (fn) {
 
-                console.log('Jimp read okay');
+if (fn.match(filePat) && !fn.match(excludePat)) {
 
-                img.scaleToFit(32, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-                .quality(30)
-                .write(sourceDir + '/' + fileNames[index].replace(filePat,'') + '_jimped_' + 32 + '.jpg', function () {
+fileNames.push(fn);
 
-                    if (index >= len - 1) {
+}
 
-                        done();
+});
 
-                    } else {
+len = fileNames.length;
+done(fileNames);
 
-                        index += 1;
+}
 
-                        api.processNext(done);
-
-                    }
-
-                }); // save
-
-
-            });
-
-        };
-
-        return api;
-
-    }
-        ());
-
-    grunt.registerTask('process', function () {
-
-        console.log('minimal_jimp process:');
-
-        taskDone = this.async();
-
-        fs.readdir(galleryPath, function (err, data) {
-
-            console.log('geting list');
-
-            console.log(data);
-
-            process.getFileNames(galleryPath + '/' + data[0], function (names) {
-
-                console.log(names);
-
-                process.processNext(function () {
-
-                    console.log('process is done');
-                    taskDone();
-
-                });
-
-            });
-
-        });
-
-    });
+});
 
 };
+
+api.processNext = function (done) {
+
+console.log('');
+console.log('processing image ' + index + '/' + len);
+console.log('imageName = ' + fileNames[index]);
+
+Jimp.read(sourceDir + '/' + fileNames[index], function (err, img) {
+
+console.log('Jimp read okay');
+
+img.scaleToFit(32, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+.quality(30)
+.write(sourceDir + '/' + fileNames[index].replace(filePat, '') + '_jimped_' + 32 + '.jpg', function () {
+
+if (index >= len - 1) {
+
+done();
+
+} else {
+
+index += 1;
+
+api.processNext(done);
+
+}
+
+}); // save
+
+
+});
+
+};
+
+return api;
+
+}
+());
+
+grunt.registerTask('process', function () {
+
+console.log('minimal_jimp process:');
+
+taskDone = this.async();
+
+fs.readdir(galleryPath, function (err, data) {
+
+console.log('geting list');
+
+console.log(data);
+
+process.getFileNames(galleryPath + '/' + data[0], function (names) {
+
+console.log(names);
+
+process.processNext(function () {
+
+console.log('process is done');
+taskDone();
+
+});
+
+});
+
+});
+
+});
+
+};
+*/
