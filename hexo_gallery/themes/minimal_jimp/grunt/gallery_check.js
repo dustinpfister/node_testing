@@ -1,6 +1,6 @@
 
 // just simply check what is there if anything.
-exports.check = function (done) {
+exports.runScript = function (done) {
 
     var dir = require('node-dir');
 

@@ -149,7 +149,7 @@ buildMD = function (done) {
 };
 
 // write markdown files for jimped images
-exports.write = function (done) {
+exports.runScript = function (done) {
 
     var page = 0;
 

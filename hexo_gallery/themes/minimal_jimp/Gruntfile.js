@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 
         done = this.async();
 
-        require('./grunt/gallery_check.js').check(function () {
+        require('./grunt/gallery_check.js').runScript(function () {
 
             console.log('done with check');
 
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 
         done = this.async();
 
-        require('./grunt/gallery_process_thum.js').process(function () {
+        require('./grunt/gallery_process_thum.js').runScript(function () {
 
             console.log('done thum process');
 
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
 
         done = this.async();
 
-        require('./grunt/gallery_writemd.js').write(function () {
+        require('./grunt/gallery_writemd.js').runScript(function () {
 
             console.log('done write process');
 
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
 
         done = this.async();
 
-        require('./grunt/gallery_index.js').build(function () {
+        require('./grunt/gallery_index.js').runScript(function () {
 
             console.log('done building index');
 

@@ -6,7 +6,7 @@ galleryPath = '../../source/img/gallery_collections',
 dir = require('node-dir');
 
 // process thum images
-exports.process = function (done) {
+exports.runScript = function (done) {
 
     dir.readFiles(
 

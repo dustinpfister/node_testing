@@ -1,5 +1,5 @@
 
-exports.build = function (done) {
+exports.runScript = function (done) {
 
     console.log('building index.');
 
