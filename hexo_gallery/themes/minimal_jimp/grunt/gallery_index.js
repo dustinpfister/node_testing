@@ -11,7 +11,11 @@ exports.runScript = function (done) {
 
         files.forEach(function (filename) {
 
-            console.log(filename);
+            if (filename != 'index.md') {
+
+                console.log(filename);
+
+            }
 
         });
 
