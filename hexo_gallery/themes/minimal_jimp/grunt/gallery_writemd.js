@@ -1,13 +1,15 @@
 
-// just simply check what is there if anything.
-exports.write = function (done) {
 
-    var dir = require('node-dir');
+var dir = require('node-dir'),
+galleryPath = '../../source/img/gallery_collections';
+
+// write markdown files for jimped images
+exports.write = function (done) {
 
     dir.readFiles(
 
         // path to read
-        '../../source/img/gallery_collections',
+        galleryPath,
 
         // options
     {
