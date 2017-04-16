@@ -19,14 +19,14 @@ exports.runScript = function (done) {
 
             if (filename != 'index.md') {
 
-                content += '[' + fn + '](' + linkPath + '/' + fn + '.html)\n';
+                //content += '[' + fn + '](' + linkPath + '/' + fn + '.html)\n';
 
                 //content += '<br><a href=\"'+imgPath+'/'+fn.replace(/_\d+$/,'')+'/thum.jpg\">link</a><br>';
 
                 //<img href=\"' + imgPath + '/' + fn.replace(/_\d+$/, '') + '/thum.jpg\">
 
                 content += '<a ' +
-                'href=\"\">'+
+                'href=\"' + linkPath + '/' + fn + '.html\">'+
 
                 '<img src=\"' + imgPath + '/' + fn.replace(/_\d+$/, '') + '/thum.jpg\">\n';
 
