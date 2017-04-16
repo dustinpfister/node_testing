@@ -45,7 +45,7 @@ buildDB = function (done) {
 
         // options
     {
-        match : /_jimped_32\.jpg$|\.png$/,
+        match : /_jimped_64\.jpg$|\.png$/,
         //matchDir:/./,
         //exclude : /_jimped_/
     },

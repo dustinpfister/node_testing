@@ -27,9 +27,9 @@ exports.runScript = function (done) {
 
             console.log('reading file: ' + filename);
 
-            img.scaleToFit(32, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+            img.scaleToFit(64, Jimp.AUTO, Jimp.RESIZE_BEZIER)
             .quality(30)
-            .write(filename.replace(/\.jpg$|\.png$/, '') + '_jimped_32.jpg', function () {
+            .write(filename.replace(/\.jpg$|\.png$/, '') + '_jimped_64.jpg', function () {
 
                 next();
 
