@@ -21,7 +21,16 @@ exports.runScript = function (done) {
 
                 content += '[' + fn + '](' + linkPath + '/' + fn + '.html)\n';
 
-                content += '<br><a href=\"'+imgPath+'/'+fn.replace(/_\d+$/,'')+'/thum.jpg\">link</a><br>';
+                //content += '<br><a href=\"'+imgPath+'/'+fn.replace(/_\d+$/,'')+'/thum.jpg\">link</a><br>';
+
+                //<img href=\"' + imgPath + '/' + fn.replace(/_\d+$/, '') + '/thum.jpg\">
+
+                content += '<a ' +
+                'href=\"\">'+
+
+                '<img src=\"' + imgPath + '/' + fn.replace(/_\d+$/, '') + '/thum.jpg\">\n';
+
+                '<\/a>\n';
 
             }
 
