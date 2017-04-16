@@ -8,7 +8,7 @@ markdownPath = '../../source/gallery',
 
 options = {
 
-    perPage : 2
+    perPage : 8
 
 },
 
