@@ -65,6 +65,7 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 
 theme: minimal_jimp
+## theme: minimal_one
 
 
 # Deployment
