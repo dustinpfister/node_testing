@@ -1,3 +1,6 @@
+---
+layout: gallery
+---
 ![barack-and-flag_jimped_64](/img/gallery_collections/art_heart/barack-and-flag_jimped_64.jpg)
 ![barak-laughing-by elijah_jimped_64](/img/gallery_collections/art_heart/barak-laughing-by elijah_jimped_64.jpg)
 ![beyonce-by-Isa_jimped_64](/img/gallery_collections/art_heart/beyonce-by-Isa_jimped_64.jpg)

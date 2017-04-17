@@ -121,9 +121,13 @@ buildMD = function (done) {
 
             db[collName].forEach(function (page, pageIndex) {
 
-                var content = '';
+                var content = '---\n'+
+                    'layout: gallery\n'+
+                    '---\n';
 
                 page.forEach(function (img) {
+
+
 
                     content += '![' + img.filename + '](' + sitePath + '/' + collName + '/' + img.filename + '.jpg)\n';
 
