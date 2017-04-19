@@ -3,13 +3,15 @@
 
 module.exports = function (grunt) {
 
-    var regMod = function (name) {
+    var regMod = function (name, options) {
+
+        options = options || {};
 
         grunt.registerTask(name, function () {
 
             done = this.async();
 
-            require('./grunt/gallery_' + name + '.js').runScript(function () {
+            require('./grunt/gallery_' + name + '.js').runScript(options, function () {
 
                 console.log('done with script: ' + name);
 
@@ -28,15 +30,18 @@ module.exports = function (grunt) {
     });
 
     // check for images
-    regMod('check');
+    regMod('check', {});
 
     // process thum images
-    regMod('process_thum');
+    regMod('process_thum', {});
+
+    // process images
+    regMod('process', {});
 
     // write mark down files
-    regMod('writemd');
+    regMod('writemd', {});
 
     // write mark down files
-    regMod('index');
+    regMod('index', {});
 
 };

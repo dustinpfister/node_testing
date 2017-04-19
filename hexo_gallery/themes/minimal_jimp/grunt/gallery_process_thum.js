@@ -6,7 +6,7 @@ galleryPath = '../../source/img/gallery_collections',
 dir = require('node-dir');
 
 // process thum images
-exports.runScript = function (done) {
+exports.runScript = function (options, done) {
 
     var index = 0,
     currentColl = '';

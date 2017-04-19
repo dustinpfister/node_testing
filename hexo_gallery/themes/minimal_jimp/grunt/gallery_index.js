@@ -3,7 +3,7 @@ linkPath = '/gallery',
 imgPath = '/img/gallery_collections',
 markdownPath = '../../source/gallery';
 
-exports.runScript = function (done) {
+exports.runScript = function (options, done) {
 
     console.log('building index.');
 
