@@ -1,0 +1,30 @@
+<!-- write all posts excerpts -->
+<% if(page.posts){ %>
+
+    <% page.posts.each(function(post){ %>
+
+        <!-- title and date -->
+        <h1><a href="<%- '/'+post.path %>"><%- post.title || 'untitled post' %> </a></h1>
+        <p>date: <%= post.date %></p>
+
+        <!-- the content of the post -->
+        <div><%- post.excerpt %></div>
+
+    <% }) %>
+
+    <% if (page.total > 1){ %>
+
+        <nav id="page-nav">
+            <%- paginator({
+                prev_text: "PREV",
+                next_text: "NEXT"
+            }) %>
+        </nav>
+
+    <% } %>
+
+<% }else{ %>
+
+    <% console.log('no pages object for path: ' + page.path) %>
+
+<% } %>

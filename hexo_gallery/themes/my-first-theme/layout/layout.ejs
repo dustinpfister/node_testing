@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+ 
+<html>
+ 
+    <head>
+ 
+        <title><%- page.title || config.title || "untitled" %></title>
+ 
+        <link rel="stylesheet" href="/css/main_style.css" >
+ 
+    </head>
+ 
+    <body>
+ 
+        <!-- header -->
+        <div id="header">
+ 
+            <div id="logo_area">
+ 
+                <h1><%- config.title || "title the site "%></h1>
+ 
+            </div>
+ 
+        </div>
+ 
+        <!-- content -->
+        <div id="content_wrap">
+ 
+            <%- body %>
+ 
+        </div>
+ 
+    </body>
+ 
+</html>

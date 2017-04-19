@@ -66,6 +66,7 @@ pagination_dir: page
 
 theme: minimal_jimp
 ## theme: minimal_one
+## theme: my-first-theme
 
 
 # Deployment
