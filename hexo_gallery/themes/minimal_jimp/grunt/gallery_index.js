@@ -10,7 +10,7 @@ exports.runScript = function (options, done) {
     fs.readdir(markdownPath, function (err, files) {
 
         //console.log(files);
-        var content = '',
+        var content = '---\nlayout: gallery\n---\n',
         fn;
 
         files.forEach(function (filename) {
