@@ -36,7 +36,9 @@ module.exports = function (grunt) {
     regMod('process_thum', {});
 
     // process images
-    regMod('process', {});
+    regMod('process', {
+        width : 320
+    });
 
     // write mark down files
     regMod('writemd', {});

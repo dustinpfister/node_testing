@@ -54,15 +54,13 @@ exports.runScript = function (options, done) {
             }
             console.log('');
 
-            /*
             img.scaleToFit(64, Jimp.AUTO, Jimp.RESIZE_BEZIER)
             .quality(30)
             .write(filename.replace(/\.jpg$|\.png$/, '') + '_jimped_64.jpg', function () {
 
-            next();
+                next();
 
             });
-             */
 
             index += 1;
 

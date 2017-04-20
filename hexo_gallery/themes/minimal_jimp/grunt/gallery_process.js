@@ -38,73 +38,76 @@ exports.runScript = function (options, done) {
 
     console.log(options);
 
-    done();
-
-    /*
     dir.readFiles(
 
-    // path to read
-    galleryPath,
+        // path to read
+        galleryPath,
 
-    // options{
-    match : /\.jpg$|\.png$/,
-    //matchDir:/./,
-    exclude : /_jimped_/
+        // options
+    {
+        match : /\.jpg$|\.png$/,
+        //matchDir:/./,
+        exclude : /_jimped_/
     },
 
-    // content call back
-    function (err, content, filename, next) {
+        // content call back
+        function (err, content, filename, next) {
 
-    Jimp.read(filename, function (err, img) {
+        Jimp.read(filename, function (err, img) {
 
-    var ns = filename.split('\\'),
-    collName = ns[ns.length - 2];
+            var ns = filename.split('\\'),
+            collName = ns[ns.length - 2];
 
-    console.log('reading file # ' + index + ' : ' + filename);
-    console.log('collection name: ' + collName);
+            console.log('reading file # ' + index + ' : ' + filename);
+            console.log('collection name: ' + collName);
 
-    // make a thum for the collection
-    if (currentColl != collName) {
+            // make a thum for the collection
+            if (currentColl != collName) {
 
-    currentColl = collName;
-    console.log('Collection Change, making thum:');
-    //console.log(ns.shift().join('//'));
+                currentColl = collName;
+                console.log('Collection Change, making thum:');
+                //console.log(ns.shift().join('//'));
 
-    img.scaleToFit(64, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-    .quality(30)
-    .write(
-    ns.slice(0, ns.length - 2).join('//') + '/' + collName + '/thum.jpg',
-    function () {
+                img.scaleToFit(64, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                .quality(30)
+                .write(
+                    ns.slice(0, ns.length - 2).join('//') + '/' + collName + '/thum.jpg',
+                    function () {
 
-    console.log('made a thum image for collection : ' + collName);
+                    console.log('made a thum image for collection : ' + collName);
 
-    });
+                });
 
-    }
-    console.log('');
+            }
+            console.log('');
 
+            img.scaleToFit(Number(options.width), Jimp.AUTO, Jimp.RESIZE_BEZIER)
+            .quality(30)
+            .write(filename.replace(/\.jpg$|\.png$/, '') + '_jimped_'+options.width+'.jpg', function () {
 
-    index += 1;
+                next();
 
-    next();
+            });
 
-    });
+            index += 1;
+
+            next();
+
+        });
 
     },
 
-    // finished callback
-    function (err, files) {
+        // finished callback
+        function (err, files) {
 
-    if (err) {
+        if (err) {
 
-    console.log(err);
+            console.log(err);
 
-    }
+        }
 
-    done();
+        done();
 
     });
-
-     */
 
 };
