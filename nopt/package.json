@@ -1,0 +1,15 @@
+{
+  "name": "nopt",
+  "version": "1.0.0",
+  "description": "testing out nopt",
+  "main": "index.js",
+  "dependencies": {
+    "nopt": "^4.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dustin Pfister",
+  "license": "GPL-3.0"
+}
