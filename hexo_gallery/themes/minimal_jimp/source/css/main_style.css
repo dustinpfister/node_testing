@@ -1,7 +1,7 @@
 body{
 
     margin:0px;
-	background:#afafaf;
+    background:#afafaf;
 
 }
 
@@ -87,6 +87,16 @@ padding:5px;
 
 margin-left:20px;
 margin-right:20px;
+
+}
+
+.gallery_index_collections{
+
+    background:#909090;
+    width:100%;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
 
 }
 

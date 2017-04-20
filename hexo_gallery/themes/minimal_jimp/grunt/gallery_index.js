@@ -13,20 +13,15 @@ exports.runScript = function (options, done) {
         var content = '---\nlayout: gallery\n---\n',
         fn;
 
+        content += '<div class="gallery_index_collections">\n';
         files.forEach(function (filename) {
 
             fn = filename.replace(/\.md$/, '');
 
             if (filename != 'index.md') {
 
-                //content += '[' + fn + '](' + linkPath + '/' + fn + '.html)\n';
-
-                //content += '<br><a href=\"'+imgPath+'/'+fn.replace(/_\d+$/,'')+'/thum.jpg\">link</a><br>';
-
-                //<img href=\"' + imgPath + '/' + fn.replace(/_\d+$/, '') + '/thum.jpg\">
-
                 content += '<a ' +
-                'href=\"' + linkPath + '/' + fn + '.html\">'+
+                'href=\"' + linkPath + '/' + fn + '.html\">' +
 
                 '<img src=\"' + imgPath + '/' + fn.replace(/_\d+$/, '') + '/thum.jpg\">\n';
 
@@ -35,6 +30,7 @@ exports.runScript = function (options, done) {
             }
 
         });
+        content += '<\/div>';
 
         console.log(content);
 
