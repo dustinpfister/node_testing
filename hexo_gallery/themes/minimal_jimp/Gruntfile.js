@@ -40,6 +40,9 @@ module.exports = function (grunt) {
         width : 320
     });
 
+    // write thums
+    regMod('thums', {});
+
     // write mark down files
     regMod('writemd', {});
 

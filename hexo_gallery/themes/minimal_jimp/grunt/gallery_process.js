@@ -62,13 +62,14 @@ exports.runScript = function (options, done) {
             console.log('collection name: ' + collName);
 
             // make a thum for the collection
+			/*
             if (currentColl != collName) {
 
                 currentColl = collName;
                 console.log('Collection Change, making thum:');
                 //console.log(ns.shift().join('//'));
 
-                img.scaleToFit(64, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                img.scaleToFit(320, Jimp.AUTO, Jimp.RESIZE_BEZIER)
                 .quality(30)
                 .write(
                     ns.slice(0, ns.length - 2).join('//') + '/' + collName + '/thum.jpg',
@@ -79,6 +80,7 @@ exports.runScript = function (options, done) {
                 });
 
             }
+			*/
             console.log('');
 
             img.scaleToFit(Number(options.width), Jimp.AUTO, Jimp.RESIZE_BEZIER)
