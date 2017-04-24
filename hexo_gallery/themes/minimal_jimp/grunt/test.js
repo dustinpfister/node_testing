@@ -3,11 +3,13 @@ var gallery = require('./gallery_api.js');
 gallery.processSource({
 
     cName : 'robots',
-	width: 320
+	width: 64,
+	quality: 80,
+	overwrite: true
 
 }, function () {
 
-    console.log('done');
+    console.log('so yeah done');
 
 });
 

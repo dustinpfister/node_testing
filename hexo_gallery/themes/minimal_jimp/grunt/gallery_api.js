@@ -3,7 +3,7 @@ var fs = require('fs'),
 Jimp = require('jimp'),
 dir = require('node-dir'),
 path = require('path'),
-sourcePath = '../../source/img/gallery_collections';
+sourcePath = '../../../source/img/gallery_collections';
 
 // get a list of collection names
 exports.getCollectionFolders = function (cPath, done) {
@@ -115,6 +115,35 @@ exports.getJimpedFiles = function (cName, done) {
 
 };
 
+var writeThum = function (options, sourceFN, newFN, next) {
+
+    Jimp.read(sourceFN, function (err, img) {
+
+        if (err) {
+
+            console.log('error reading source');
+            console.log(err);
+
+            next();
+
+        } else {
+
+            img.scaleToFit(options.width, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+            .quality(options.quality)
+            .write(
+                newFN,
+                function () {
+
+                next();
+
+            });
+
+        }
+
+    });
+
+};
+
 // process source images
 exports.processSource = function (options) {
 
@@ -123,6 +152,8 @@ exports.processSource = function (options) {
     options = options || {};
     options.cName = options.cName || '';
     options.width = options.width || 32;
+    options.quality = options.quality || 40;
+    options.overwrite = options.overwrite || false;
     //options.match = options.match || /.jpg$|.png$|.JPG$|.PNG$/;
 
     dir.readFiles(
@@ -150,34 +181,38 @@ exports.processSource = function (options) {
 
                 // if not there write it
 
+                writeThum(options, filename, jimpedFN, next);
+
+                /*
                 Jimp.read(filename, function (err, img) {
 
-                    if (err) {
+                if (err) {
 
-                        console.log('error reading source');
-                        console.log(err);
+                console.log('error reading source');
+                console.log(err);
 
-                        next();
+                next();
 
-                    } else {
+                } else {
 
-                        console.log('reading source for: ' + filename);
+                console.log('reading source for: ' + filename);
 
-                        img.scaleToFit(320, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-                        .quality(30)
-                        .write(
-                            jimpedFN,
-                            function () {
+                img.scaleToFit(options.width, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                .quality(options.quality)
+                .write(
+                jimpedFN,
+                function () {
 
-                            console.log('made thum for ' + filename);
+                console.log('made thum for ' + filename);
 
-                            next();
-
-                        });
-
-                    }
+                next();
 
                 });
+
+                }
+
+                });
+                 */
 
             } else {
 
@@ -185,7 +220,15 @@ exports.processSource = function (options) {
 
                 console.log('jimp found.');
 
-                next();
+                if (options.overwrite) {
+
+                    writeThum(options, filename, jimpedFN, next);
+
+                } else {
+
+                    next();
+
+                }
 
             }
 
