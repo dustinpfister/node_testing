@@ -121,16 +121,17 @@ buildMD = function (done) {
 
             db[collName].forEach(function (page, pageIndex) {
 
-                var content = '---\n'+
-                    'layout: gallery\n'+
+                var content = '---\n' +
+                    'layout: gallery\n' +
                     '---\n';
 
                 page.forEach(function (img) {
 
+                    content += '<img src=\"' + sitePath + '/' + collName + '/' + img.filename + '.jpg\">\n';
 
-
+                    /*
                     content += '![' + img.filename + '](' + sitePath + '/' + collName + '/' + img.filename + '.jpg)\n';
-
+                     */
                 });
 
                 markdown.push({
@@ -153,7 +154,7 @@ buildMD = function (done) {
 };
 
 // write markdown files for jimped images
-exports.runScript = function (options,done) {
+exports.runScript = function (options, done) {
 
     var page = 0;
 
