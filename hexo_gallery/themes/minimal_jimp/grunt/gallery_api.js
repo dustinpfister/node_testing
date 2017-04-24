@@ -1,6 +1,7 @@
 
 var fs = require('fs'),
-path = require('path');
+path = require('path'),
+sourcePath = '../../source/img/gallery_collections';
 
 // get a list of collection names
 exports.getCollectionFolders = function (cPath, done) {
@@ -60,4 +61,54 @@ exports.getCollectionFolders = function (cPath, done) {
 
     });
 
-}
+};
+
+// make a thum for the given collection name
+exports.getSourceFiles = function (cName, done) {
+
+    // a cName must be given
+    if (cName === undefined) {
+
+        return;
+
+    }
+
+    done = done || function () {
+
+        console.log('no callback given for getSourceFiles');
+
+    }
+
+    fs.readdir(path.join(sourcePath, cName), function (err, data) {
+
+        done(data.filter(function (fName) {
+                return !fName.match(/_jimped_/) && fName !== 'thum.jpg';
+            }));
+
+    });
+
+};
+
+// make a thum for the given collection name
+exports.getJimpedFiles = function (cName, done) {
+
+    // a cName must be given
+    if (cName === undefined) {
+
+        return;
+
+    }
+
+    done = done || function () {
+        console.log('no callback given for getSourceFiles');
+    }
+
+    fs.readdir(path.join(sourcePath, cName), function (err, data) {
+
+        done(data.filter(function (fName) {
+                return !!fName.match(/_jimped_64/) && fName !== 'thum.jpg';
+            }));
+
+    });
+
+};
