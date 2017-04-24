@@ -1,7 +1,9 @@
 
 var fs = require('fs'),
+Jimp = require('jimp'),
+dir = require('node-dir'),
 path = require('path'),
-sourcePath = '../../source/img/gallery_collections';
+sourcePath = '../../../source/img/gallery_collections';
 
 // get a list of collection names
 exports.getCollectionFolders = function (cPath, done) {
@@ -63,7 +65,7 @@ exports.getCollectionFolders = function (cPath, done) {
 
 };
 
-// make a thum for the given collection name
+// get the source files for the given collection name
 exports.getSourceFiles = function (cName, done) {
 
     // a cName must be given
@@ -89,7 +91,7 @@ exports.getSourceFiles = function (cName, done) {
 
 };
 
-// make a thum for the given collection name
+// get the jimped files for the given collection name
 exports.getJimpedFiles = function (cName, done) {
 
     // a cName must be given
@@ -108,6 +110,39 @@ exports.getJimpedFiles = function (cName, done) {
         done(data.filter(function (fName) {
                 return !!fName.match(/_jimped_64/) && fName !== 'thum.jpg';
             }));
+
+    });
+
+};
+
+// for all images
+exports.forAll = function (options, method) {
+
+    console.log('yes for all is getting called');
+
+    options = options || {};
+    options.cName = options.cName || '';
+
+    dir.readFiles(
+
+        path.join(sourcePath, options.cName),
+        {
+
+        match : /.jpg$/
+
+    },
+
+        function (err, content, filename, next) {
+
+        console.log(filename);
+
+        next();
+
+    },
+
+        function (err, files) {
+
+        console.log('done');
 
     });
 

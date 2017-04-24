@@ -83,6 +83,7 @@ exports.runScript = function (options, done) {
 			*/
             console.log('');
 
+			
             img.scaleToFit(Number(options.width), Jimp.AUTO, Jimp.RESIZE_BEZIER)
             .quality(30)
             .write(filename.replace(/\.jpg$|\.png$/, '') + '_jimped_'+options.width+'.jpg', function () {
