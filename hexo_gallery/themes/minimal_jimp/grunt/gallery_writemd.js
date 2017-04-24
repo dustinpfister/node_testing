@@ -9,7 +9,7 @@ markdownPath = '../../source/gallery',
 
 options = {
 
-    perPage : 3
+    perPage : 2
 
 },
 
@@ -153,7 +153,7 @@ buildMD = function (done) {
 
                     var nextPage = collName + '_' + Number(pageIndex + 1) + '.html';
 
-                    content += '<p><a href=\"' + nextPage + '\">next page: ' + nextPage + '<\/a><\/p>';
+                    content += '<a href=\"' + nextPage + '\">next page |<\/a>';
 
                 }
 
@@ -162,7 +162,7 @@ buildMD = function (done) {
 
                     var prevPage = collName + '_' + Number(pageIndex-1) + '.html';
 
-                    content += '<p><a href=\"' + prevPage + '\">prev page: ' + prevPage + '<\/a><\/p>';
+                    content += '<a href=\"' + prevPage + '\">| prev page<\/a>';
 
                 }
 
