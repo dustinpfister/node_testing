@@ -1,8 +1,9 @@
 var gallery = require('./gallery_api.js');
 
-gallery.forAll({
+gallery.processSource({
 
-   // cName : 'art_heart'
+    cName : 'robots',
+	width: 173
 
 }, function () {
 

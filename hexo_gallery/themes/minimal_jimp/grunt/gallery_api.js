@@ -108,14 +108,67 @@ exports.getJimpedFiles = function (cName, done) {
     fs.readdir(path.join(sourcePath, cName), function (err, data) {
 
         done(data.filter(function (fName) {
-                return !!fName.match(/_jimped_64/) && fName !== 'thum.jpg';
+                return !!fName.match(/_jimped_/) && fName !== 'thum.jpg';
             }));
 
     });
 
 };
 
-// for all images
+// process source images
+exports.processSource = function (options) {
+
+    var fileEnd = /.jpg$|.png$|.JPG$|.PNG$/;
+
+    options = options || {};
+    options.cName = options.cName || '';
+    options.width = options.width || 32;
+    //options.match = options.match || /.jpg$|.png$|.JPG$|.PNG$/;
+
+    dir.readFiles(
+
+        path.join(sourcePath, options.cName), {
+
+        match : fileEnd, // jpg or png files
+        exclude : /_jimped_|thum.jpg/// exclude images that are not source
+
+    },
+
+        function (err, content, filename, next) {
+
+        // the jimped filename
+        var jimpedFN = filename.replace(fileEnd, '_jimped_' + options.width + '.jpg');
+
+        console.log(jimpedFN);
+
+        // check if it is there
+        Jimp.read(jimpedFN, function (err, img) {
+
+            if (err) {
+
+                console.log('jimp not found');
+
+            } else {
+
+                console.log('jimp found.');
+
+            }
+
+            next();
+
+        });
+
+    },
+
+        function (err, files) {
+
+        console.log('done');
+
+    });
+
+};
+
+// ALPHA: for all images
 exports.forAll = function (options, method) {
 
     console.log('yes for all is getting called');
@@ -125,10 +178,10 @@ exports.forAll = function (options, method) {
 
     dir.readFiles(
 
-        path.join(sourcePath, options.cName),
-        {
+        path.join(sourcePath, options.cName), {
 
-        match : /.jpg$/
+        match : /.jpg$/,
+        exclude : /_jimped_/
 
     },
 
