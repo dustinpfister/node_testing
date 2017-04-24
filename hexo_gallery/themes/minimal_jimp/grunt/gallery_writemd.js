@@ -126,6 +126,8 @@ buildMD = function (done) {
                     'layout: gallery\n' +
                     '---\n\n';
 
+                content += '<div class=\"jimped_thum_collection\">\n\n';
+
                 page.forEach(function (img) {
 
                     // link to source image
@@ -144,6 +146,8 @@ buildMD = function (done) {
                     content += '![' + img.filename + '](' + sitePath + '/' + collName + '/' + img.filename + '.jpg)\n';
                      */
                 });
+
+                content += '<\/div>';
 
                 markdown.push({
 
