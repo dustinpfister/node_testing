@@ -142,19 +142,52 @@ exports.processSource = function (options) {
         console.log(jimpedFN);
 
         // check if it is there
-        Jimp.read(jimpedFN, function (err, img) {
+        fs.readFile(jimpedFN, function (err, img) {
 
             if (err) {
 
                 console.log('jimp not found');
 
+                // if not there write it
+
+                Jimp.read(filename, function (err, img) {
+
+                    if (err) {
+
+                        console.log('error reading source');
+                        console.log(err);
+
+                        next();
+
+                    } else {
+
+                        console.log('reading source for: ' + filename);
+
+                        img.scaleToFit(320, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                        .quality(30)
+                        .write(
+                            jimpedFN,
+                            function () {
+
+                            console.log('made thum for ' + filename);
+
+                            next();
+
+                        });
+
+                    }
+
+                });
+
             } else {
+
+                // else continue
 
                 console.log('jimp found.');
 
-            }
+                next();
 
-            next();
+            }
 
         });
 

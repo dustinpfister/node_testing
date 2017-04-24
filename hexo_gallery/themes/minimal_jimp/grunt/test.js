@@ -3,7 +3,7 @@ var gallery = require('./gallery_api.js');
 gallery.processSource({
 
     cName : 'robots',
-	width: 173
+	width: 320
 
 }, function () {
 
