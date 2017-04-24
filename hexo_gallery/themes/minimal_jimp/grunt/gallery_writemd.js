@@ -9,7 +9,7 @@ markdownPath = '../../source/gallery',
 
 options = {
 
-    perPage : 8
+    perPage : 3
 
 },
 
@@ -146,6 +146,31 @@ buildMD = function (done) {
                     content += '![' + img.filename + '](' + sitePath + '/' + collName + '/' + img.filename + '.jpg)\n';
                      */
                 });
+
+                content += '<p>page: ' + pageIndex + '; pages: ' + collections.length + '<\/p>';
+
+                if (Number(pageIndex + 1) < db[collName].length) {
+
+                    var nextPage = collName + '_' + Number(pageIndex + 1) + '.html';
+
+                    content += '<p><a href=\"' + nextPage + '\">next page: ' + nextPage + '<\/a><\/p>';
+
+                }
+
+                // if page index is not zero there is a prev page
+                if (pageIndex != 0) {
+
+                    var prevPage = collName + '_' + Number(pageIndex-1) + '.html';
+
+                    content += '<p><a href=\"' + prevPage + '\">prev page: ' + prevPage + '<\/a><\/p>';
+
+                }
+
+                if (pageIndex === 0) {
+
+                    content += '<p>first page</p>';
+
+                }
 
                 content += '<br><\/div>';
 

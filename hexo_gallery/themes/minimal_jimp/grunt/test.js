@@ -2,7 +2,7 @@ var gallery = require('./gallery_api.js');
 
 gallery.processSource({
 
-    cName : 'robots',
+    //cName : 'robots',
 	width: 64,
 	quality: 80,
 	overwrite: true
