@@ -6,13 +6,6 @@ galleryPath = '../../source/img/gallery_collections',
 dir = require('node-dir'),
 path = require('path');
 
-/*
-function getDirectories (srcpath) {
-return fs.readdirSync(srcpath)
-.filter(file => fs.statSync(path.join(srcpath, file)).isDirectory())
-}
- */
-
 getCollectionFolders = function (cPath, done) {
 
     cPath = cPath || './';
@@ -57,6 +50,7 @@ getCollectionFolders = function (cPath, done) {
 
                     }
 
+                    // call done callback only when we get to the last index
                     if (index === contents.length - 1) {
 
                         done(folders);
@@ -73,21 +67,14 @@ getCollectionFolders = function (cPath, done) {
 
 };
 
-/*
-dir.readFiles(galleryPath, {}, function (err, content, filename, next) {
-
-console.log(err);
-console.log(filename);
-
-next();
-
-}, function () {});
- */
-
 exports.runScript = function (options, done) {
 
     console.log('gallery_thums.');
 
-    getCollectionFolders(galleryPath);
+    getCollectionFolders(galleryPath, function (folders) {
+
+        console.log(folders);
+
+    });
 
 };
