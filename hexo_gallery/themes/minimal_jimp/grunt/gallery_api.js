@@ -3,7 +3,7 @@ var fs = require('fs'),
 Jimp = require('jimp'),
 dir = require('node-dir'),
 path = require('path'),
-sourcePath = '../../../source/img/gallery_collections';
+sourcePath = '../../source/img/gallery_collections';
 
 // get a list of collection names
 exports.getCollectionFolders = function (cPath, done) {
@@ -84,7 +84,7 @@ exports.getSourceFiles = function (cName, done) {
     fs.readdir(path.join(sourcePath, cName), function (err, data) {
 
         done(data.filter(function (fName) {
-                return !fName.match(/_jimped_/) && fName !== 'thum.jpg';
+                return !fName.match(/_jimped_64/) && fName !== 'thum.jpg';
             }));
 
     });

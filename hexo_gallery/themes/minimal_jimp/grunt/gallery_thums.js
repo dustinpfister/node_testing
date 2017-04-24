@@ -58,7 +58,7 @@ exports.runScript = function (options, done) {
 
         console.log(cNames);
 
-        makeThum(cNames[1]);
+        makeThum(cNames[0]);
 
         // get a file from each collection, and make it the thum.jpg for the collection
 
