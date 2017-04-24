@@ -147,7 +147,7 @@ buildMD = function (done) {
                      */
                 });
 
-                content += '<\/div>';
+                content += '<br><\/div>';
 
                 markdown.push({
 

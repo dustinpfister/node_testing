@@ -110,11 +110,33 @@ margin-right:20px;
 
 }
 
+.jimped_thum_collection{
+
+    background:#808080;
+    text-align:center;
+
+}
+
 .jimped_thum{
 
     display:inline-block;
-    width:64px;
-    background:#00ff00;
+    
+}
+
+
+.jimped_thum > a > img{
+
+    width:128px;
+
+}
+
+@media (max-width: 360px) {
+
+    .jimped_thum > a > img{
+
+       width:64px;
+
+    }
 
 }
 
