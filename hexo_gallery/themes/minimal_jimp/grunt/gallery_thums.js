@@ -81,7 +81,14 @@ makeThum = function (cName, done) {
 
     fs.readdir(path.join(galleryPath, cName), function (err, data) {
 
-        console.log(data);
+        console.log(data.filter(function (fName) {
+
+                console.log();
+                console.log(!fName.match(/_jimped_/));
+                console.log();
+
+                return !fName.match(/_jimped_/) && fName !== 'thum.jpg';
+            }));
 
     });
 
