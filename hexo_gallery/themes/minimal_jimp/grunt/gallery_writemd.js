@@ -129,12 +129,14 @@ buildMD = function (done) {
                 page.forEach(function (img) {
 
                     // link to source image
-                    content += '<a href=\"'+path.join(sitePath,collName,img.filename.replace(/_jimped_64/,'')+'.jpg')+'\">\n' +
+                    content += '<div class=\"jimped_thum\">\n' +
+
+                    '<a href=\"' + path.join(sitePath, collName, img.filename.replace(/_jimped_64/, '') + '.jpg') + '\">\n' +
 
                     // use thum images on the page
-                    '<img src=\"' + sitePath + '/' + collName + '/' + img.filename + '.jpg\">\n' +
+                    '<img src=\"' + path.join(sitePath, collName, img.filename + '.jpg') + '\">\n' +
 
-                    '<\/a>\n\n'
+                    '<\/a>\n<\/div>\n\n'
 
                     /*
                     content += '![' + img.filename + '](' + sitePath + '/' + collName + '/' + img.filename + '.jpg)\n';
