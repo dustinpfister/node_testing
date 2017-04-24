@@ -127,10 +127,28 @@ makeThum = function (cName, done) {
     }
 
     console.log(cName);
-    getJimpedFiles(cName, function (files) {
+    getSourceFiles(cName, function (files) {
 
         console.log('the source files:');
-        console.log(files);
+        console.log();
+
+        Jimp.read(path.join(galleryPath, cName, files[0]), function (err, img) {
+
+            console.log(img);
+
+            img.scaleToFit(320, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+            .quality(30)
+            .write(
+                path.join(galleryPath, cName, 'thum.jpg'),
+                function () {
+
+                console.log('made a thum image for collection : ' + cName);
+
+                done();
+
+            });
+
+        });
 
     });
 
@@ -145,7 +163,7 @@ exports.runScript = function (options, done) {
 
         console.log(cNames);
 
-        makeThum(cNames[0]);
+        makeThum(cNames[1]);
 
         // get a file from each collection, and make it the thum.jpg for the collection
 
