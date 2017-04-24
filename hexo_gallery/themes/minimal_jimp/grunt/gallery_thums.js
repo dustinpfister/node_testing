@@ -16,8 +16,6 @@ getCollectionFolders = function (cPath, done) {
 
     };
 
-    console.log(cPath);
-
     fs.readdir(cPath, function (err, contents) {
 
         var folders = [];
@@ -39,8 +37,6 @@ getCollectionFolders = function (cPath, done) {
                         console.log(err);
 
                     } else {
-
-                        console.log();
 
                         if (data.isDirectory()) {
 
@@ -65,15 +61,44 @@ getCollectionFolders = function (cPath, done) {
 
     });
 
+},
+
+// make a thum for the given collection name
+makeThum = function (cName, done) {
+
+    var file;
+
+    // a cName must be given
+    if (cName === undefined) {
+
+        return;
+
+    }
+
+    done = done || function () {
+        console.log('no callback given for makeThum');
+    }
+
+    fs.readdir(path.join(galleryPath, cName), function (err, data) {
+
+        console.log(data);
+
+    });
+
 };
 
 exports.runScript = function (options, done) {
 
     console.log('gallery_thums.');
 
-    getCollectionFolders(galleryPath, function (folders) {
+    // get the collection names
+    getCollectionFolders(galleryPath, function (cNames) {
 
-        console.log(folders);
+        console.log(cNames);
+
+        makeThum(cNames[0]);
+
+        // get a file from each collection, and make it the thum.jpg for the collection
 
     });
 
