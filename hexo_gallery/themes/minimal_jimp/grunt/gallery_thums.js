@@ -13,26 +13,61 @@ return fs.readdirSync(srcpath)
 }
  */
 
-getCollectionFolders = function () {
+getCollectionFolders = function (cPath, done) {
 
-    fs.readdir(galleryPath, function (err, contents) {
+    cPath = cPath || './';
+    done = done || function (folders) {
 
-        console.log(contents);
+        console.log('no callback given');
+        console.log(folders);
 
-        var f = contents.filter(function (file) {
+    };
 
-                var filePath = path.join(galleryPath, file);
+    console.log(cPath);
+
+    fs.readdir(cPath, function (err, contents) {
+
+        var folders = [];
+
+        if (err) {
+
+            console.log('err');
+
+        } else {
+
+            contents.forEach(function (file, index) {
+
+                var filePath = path.join(cPath, file);
 
                 fs.stat(filePath, function (err, data) {
 
-                    console.log(err);
-                    console.log(data)
+                    if (err) {
+
+                        console.log(err);
+
+                    } else {
+
+                        console.log();
+
+                        if (data.isDirectory()) {
+
+                            folders.push(file);
+
+                        }
+
+                    }
+
+                    if (index === contents.length - 1) {
+
+                        done(folders);
+
+                    }
 
                 });
 
             });
 
-        console.log(f);
+        }
 
     });
 
@@ -53,6 +88,6 @@ exports.runScript = function (options, done) {
 
     console.log('gallery_thums.');
 
-    getCollectionFolders();
+    getCollectionFolders(galleryPath);
 
 };
