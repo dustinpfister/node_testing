@@ -136,7 +136,9 @@ buildMD = function (done) {
                     // use thum images on the page
                     '<img src=\"' + path.join(sitePath, collName, img.filename + '.jpg') + '\">\n' +
 
-                    '<\/a>\n<\/div>\n\n'
+                    '<\/a>\n<\/div>\n\n';
+
+                    //'<\/div>\n\n';
 
                     /*
                     content += '![' + img.filename + '](' + sitePath + '/' + collName + '/' + img.filename + '.jpg)\n';

@@ -5,6 +5,15 @@ body{
 
 }
 
+img{}
+
+a{
+	
+	padding:0px;
+	margin:0px;
+	
+}
+
 /* header */
 #header{
 
@@ -90,6 +99,7 @@ margin-right:20px;
 
 }
 
+/* jimped scripts */
 .gallery_index_collections{
 
     background:#909090;
@@ -97,6 +107,14 @@ margin-right:20px;
     text-align:center;
     margin-left:auto;
     margin-right:auto;
+
+}
+
+.jimped_thum{
+
+    display:inline-block;
+    width:64px;
+    background:#00ff00;
 
 }
 
