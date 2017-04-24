@@ -2,6 +2,7 @@
 
 var dir = require('node-dir'),
 fs = require('fs'),
+path = require('path'),
 galleryPath = '../../source/img/gallery_collections',
 sitePath = '/img/gallery_collections',
 markdownPath = '../../source/gallery',
@@ -123,11 +124,17 @@ buildMD = function (done) {
 
                 var content = '---\n' +
                     'layout: gallery\n' +
-                    '---\n';
+                    '---\n\n';
 
                 page.forEach(function (img) {
 
-                    content += '<img src=\"' + sitePath + '/' + collName + '/' + img.filename + '.jpg\">\n';
+                    // link to source image
+                    content += '<a href=\"'+path.join(sitePath,collName,img.filename.replace(/_jimped_64/,'')+'.jpg')+'\">\n' +
+
+                    // use thum images on the page
+                    '<img src=\"' + sitePath + '/' + collName + '/' + img.filename + '.jpg\">\n' +
+
+                    '<\/a>\n\n'
 
                     /*
                     content += '![' + img.filename + '](' + sitePath + '/' + collName + '/' + img.filename + '.jpg)\n';
