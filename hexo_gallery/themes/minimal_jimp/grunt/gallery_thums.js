@@ -89,6 +89,30 @@ getSourceFiles = function (cName, done) {
 },
 
 // make a thum for the given collection name
+getJimpedFiles = function (cName, done) {
+
+    // a cName must be given
+    if (cName === undefined) {
+
+        return;
+
+    }
+
+    done = done || function () {
+        console.log('no callback given for getSourceFiles');
+    }
+
+    fs.readdir(path.join(galleryPath, cName), function (err, data) {
+
+        done(data.filter(function (fName) {
+                return !!fName.match(/_jimped_64/) && fName !== 'thum.jpg';
+            }));
+
+    });
+
+},
+
+// make a thum for the given collection name
 makeThum = function (cName, done) {
 
     // a cName must be given
@@ -102,7 +126,8 @@ makeThum = function (cName, done) {
         console.log('no callback given for makeThum');
     }
 
-    getSourceFiles(cName, function (files) {
+    console.log(cName);
+    getJimpedFiles(cName, function (files) {
 
         console.log('the source files:');
         console.log(files);
