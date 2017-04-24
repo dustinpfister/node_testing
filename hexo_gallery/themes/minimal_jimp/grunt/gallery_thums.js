@@ -4,8 +4,10 @@ var Jimp = require('jimp'),
 fs = require('fs'),
 galleryPath = '../../source/img/gallery_collections',
 dir = require('node-dir'),
-path = require('path');
+path = require('path'),
+gallery = require('./gallery_api.js');
 
+/*
 // get a list of collection names
 getCollectionFolders = function (cPath, done) {
 
@@ -63,6 +65,7 @@ getCollectionFolders = function (cPath, done) {
     });
 
 },
+*/
 
 // make a thum for the given collection name
 getSourceFiles = function (cName, done) {
@@ -159,7 +162,7 @@ exports.runScript = function (options, done) {
     console.log('gallery_thums.');
 
     // get the collection names
-    getCollectionFolders(galleryPath, function (cNames) {
+    gallery.getCollectionFolders(galleryPath, function (cNames) {
 
         console.log(cNames);
 
