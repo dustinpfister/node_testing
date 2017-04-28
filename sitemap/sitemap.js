@@ -1,7 +1,8 @@
 var sm = require('sitemap'),
 fs = require('fs'),
 path = require('path'),
-postsPath = './source/_posts';
+
+sourcePath = './source/_posts';
 
 // Creates a sitemap object given the input configuration with URLs
 var sitemap = sm.createSitemap({
@@ -46,14 +47,14 @@ var getHeaders = function (done) {
 
     var headers = [];
 
-    fs.readdir(postsPath, function (err, fileNames) {
+    fs.readdir(sourcePath, function (err, fileNames) {
 
         var index = 0,
         next = function () {
 
             if (fileNames[index] != undefined) {
 
-                fs.readFile(path.join(postsPath, fileNames[index]), 'utf8', function (err, data) {
+                fs.readFile(path.join(sourcePath, fileNames[index]), 'utf8', function (err, data) {
 
                     // get header
                     var startIndex = data.indexOf('---'),
@@ -110,11 +111,12 @@ findPaths = function () {
 
         headers.forEach(function (head) {
 
-            var date = head.date.trim().split(' ')[0];
+            var date = head.date.trim().split(' ')[0],
+			postPath = path.join(date.split('-').join('\/'), head.fileName.replace(/\.md$/,''),'index.html');
 
-            //console.log(date.split('-').join('\/'));
+            //console.log();
 
-            console.log(head);
+            console.log(postPath);
 
         });
 
