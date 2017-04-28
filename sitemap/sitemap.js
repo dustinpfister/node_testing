@@ -42,52 +42,71 @@ var xml = sitemap.toString();
 
  */
 
-fs.readdir(postsPath, function (err, data) {
+var getHeaders = function (done) {
 
-    var index = 0,
-    next = function () {
+    var headers = [];
 
-        if (data[index] != undefined) {
+    console.log('hello?');
 
-            fs.readFile(path.join(postsPath, data[index]), 'utf8', function (err, data) {
+    fs.readdir(postsPath, function (err, fileNames) {
 
-                // get header
-                var startIndex = data.indexOf('---'),
-                endIndex = data.indexOf('---', startIndex + 3),
-                text = data.substr(startIndex, endIndex - startIndex + 3),
+        var index = 0,
+        next = function () {
 
-                meta = {};
+            if (fileNames[index] != undefined) {
 
-                //console.log(text.split('\n'));
+                fs.readFile(path.join(postsPath, fileNames[index]), 'utf8', function (err, data) {
 
-                text.split('\n').forEach(function (line) {
+                    // get header
+                    var startIndex = data.indexOf('---'),
+                    endIndex = data.indexOf('---', startIndex + 3),
+                    text = data.substr(startIndex, endIndex - startIndex + 3),
 
-                    var line = line.split(/:(.+)/);
+                    meta = {};
 
-                    if (line[0].substr(0,3) != '---') {
+                    //console.log(text.split('\n'));
 
-                        meta[line[0]] = line[1];
+                    text.split('\n').forEach(function (line) {
+
+                        var line = line.split(/:(.+)/);
+
+                        if (line[0].substr(0, 3) != '---') {
+
+                            meta[line[0]] = line[1];
+
+                        }
+
+                    });
+
+                    headers.push(meta)
+
+                    if (index < fileNames.length - 1) {
+
+                        index += 1;
+
+                        next();
+
+                    } else {
+
+                        done(headers);
 
                     }
 
                 });
 
-                console.log(meta);
+            }
 
-                if (index < data.length - 1) {
+        };
 
-                    index += 1;
+        next();
 
-                    next();
+    });
 
-                }
+};
 
-            });
+getHeaders(function (headers) {
 
-        }
-
-    };
-
-    next();
+    console.log('the headers:');
+    console.log(headers);
 
 });
