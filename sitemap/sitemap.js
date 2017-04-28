@@ -74,6 +74,9 @@ var getHeaders = function (done) {
 
                     });
 
+                    // add filename
+                    meta.fileName = fileNames[index];
+
                     headers.push(meta)
 
                     if (index < fileNames.length - 1) {
