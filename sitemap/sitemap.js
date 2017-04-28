@@ -46,8 +46,6 @@ var getHeaders = function (done) {
 
     var headers = [];
 
-    console.log('hello?');
-
     fs.readdir(postsPath, function (err, fileNames) {
 
         var index = 0,
@@ -63,8 +61,6 @@ var getHeaders = function (done) {
                     text = data.substr(startIndex, endIndex - startIndex + 3),
 
                     meta = {};
-
-                    //console.log(text.split('\n'));
 
                     text.split('\n').forEach(function (line) {
 
@@ -102,11 +98,25 @@ var getHeaders = function (done) {
 
     });
 
+},
+
+// find actual paths that will be used in the sitemap
+findPaths = function () {
+
+    getHeaders(function (headers) {
+
+        headers.forEach(function (head) {
+
+            var date = head.date.trim().split(' ')[0];
+
+            //console.log(date.split('-').join('\/'));
+
+            console.log(head);
+
+        });
+
+    });
+
 };
 
-getHeaders(function (headers) {
-
-    console.log('the headers:');
-    console.log(headers);
-
-});
+findPaths();
