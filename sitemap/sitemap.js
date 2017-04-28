@@ -125,6 +125,26 @@ findPaths = function (headers) {
     // return the new headers
     return headers;
 
+},
+
+// build the url array for the sitemap, with the given headers
+buildUrlArray = function (headers) {
+
+    var urls = [];
+
+    headers.forEach(function (head) {
+
+        // url, lastmod
+        urls.push({
+
+            url : head.url,
+            lastmod : head.updated.trim().split(' ')[0]
+        });
+
+    });
+
+    return urls;
+
 };
 
 getHeaders(function (headers) {
@@ -132,6 +152,6 @@ getHeaders(function (headers) {
     //append urls
     headers = findPaths(headers);
 
-    console.log(headers);
+    console.log(buildUrlArray(headers));
 
 });
