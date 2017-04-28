@@ -1,5 +1,6 @@
 var sm = require('sitemap'),
 fs = require('fs'),
+
 path = require('path'),
 
 sourcePath = './source/_posts';
@@ -105,23 +106,32 @@ var getHeaders = function (done) {
 },
 
 // find actual paths that will be used in the sitemap
-findPaths = function () {
+findPaths = function (headers) {
 
-    getHeaders(function (headers) {
+    // append url to all headers
+    headers.forEach(function (head) {
 
-        headers.forEach(function (head) {
+        var date = head.date.trim().split(' ')[0],
+        postPath = path.join('\/', date.split('-').join('\/'), head.fileName.replace(/\.md$/, ''), 'index.html');
 
-            var date = head.date.trim().split(' ')[0],
-			postPath = path.join(date.split('-').join('\/'), head.fileName.replace(/\.md$/,''),'index.html');
+        // make it URL friendly if not.
+        postPath = postPath.replace(/\\/g, '/');
 
-            //console.log();
-
-            console.log(postPath);
-
-        });
+        // append to head
+        head.url = postPath;
 
     });
 
+    // return the new headers
+    return headers;
+
 };
 
-findPaths();
+getHeaders(function (headers) {
+
+    //append urls
+    headers = findPaths(headers);
+
+    console.log(headers);
+
+});
