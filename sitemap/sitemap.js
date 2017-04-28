@@ -5,30 +5,31 @@ path = require('path'),
 
 sourcePath = './source/_posts';
 
+/*
 // Creates a sitemap object given the input configuration with URLs
 var sitemap = sm.createSitemap({
-        hostname : 'http://dustinpfister.github.io',
-        cacheTime : 600000, // 600 sec - cache purge period
-        urls : [{
-                url : '/',
-                changefreq : 'daily',
-                priority : 0.8
-            }, {
-                url : '/archives/',
-                changefreq : 'weekly',
-                priority : 0.6
-            }, {
-                url : '/games/',
-                changefreq : 'weekly',
-                priority : 0.4
-            }, {
-                url : '/about/',
-                changefreq : 'monthly',
-                priority : 0.2
-            },
-        ]
-    });
-/*
+hostname : 'http://dustinpfister.github.io',
+cacheTime : 600000, // 600 sec - cache purge period
+urls : [{
+url : '/',
+changefreq : 'daily',
+priority : 0.8
+}, {
+url : '/archives/',
+changefreq : 'weekly',
+priority : 0.6
+}, {
+url : '/games/',
+changefreq : 'weekly',
+priority : 0.4
+}, {
+url : '/about/',
+changefreq : 'monthly',
+priority : 0.2
+},
+]
+});
+
 // Generates XML with a callback function
 sitemap.toXML(function (err, xml) {
 
@@ -44,6 +45,7 @@ var xml = sitemap.toString();
 
  */
 
+// get all headers for all markdown files.
 var getHeaders = function (done) {
 
     var headers = [];
@@ -145,13 +147,40 @@ buildUrlArray = function (headers) {
 
     return urls;
 
+},
+
+// make the sitemap with the urls, and data from markdown.
+makeSiteMap = function (done) {
+
+    done = done || function () {};
+
+    getHeaders(function (headers) {
+
+        var sitemap = sm.createSitemap({
+                hostname : 'http://dustinpfister.github.io',
+                cacheTime : 600000, // 600 sec - cache purge period
+                urls : buildUrlArray(findPaths(headers))
+            });
+
+        sitemap.toXML(function (err, xml) {
+
+            done(xml);
+
+        });
+
+    });
+
 };
 
-getHeaders(function (headers) {
+// write out the sitemap
+makeSiteMap(function (sitemap) {
 
-    //append urls
-    headers = findPaths(headers);
+    console.log(sitemap);
 
-    console.log(buildUrlArray(headers));
+    fs.writeFile('./sitemap.xml', sitemap, function (err) {
+
+        console.log(err);
+
+    });
 
 });
