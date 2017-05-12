@@ -1,7 +1,9 @@
 var fs = require('fs'),
-path = require('path');
+path = require('path'),
 
-var readDir = function (dir, forItem) {
+matchPat = /\.txt$/,
+
+readDir = function (dir, forItem) {
 
     forItem = forItem || function (itemLoc) {
         console.log(itemLoc)
@@ -21,7 +23,7 @@ var readDir = function (dir, forItem) {
             // if a dir, continue recursively
             if (fs.lstatSync(itemLoc).isDirectory()) {
 
-                readDir(itemLoc);
+                readDir(itemLoc,forItem);
 
             }
 
@@ -33,9 +35,6 @@ var readDir = function (dir, forItem) {
 
 readDir('./source', function (itemLoc) {
 
-    //console.log(itemLoc);
-
-    itemLoc.match(/txt$/);
-
+    console.log( itemLoc.match(matchPat) );
 
 });
