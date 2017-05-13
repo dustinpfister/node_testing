@@ -17,15 +17,15 @@ readDir = function (dir, forItem) {
 
             itemLoc = path.join(dir, '/' + item);
 
-            // log the current item
-            forItem(itemLoc);
-
             // if a dir, continue recursively
             if (fs.lstatSync(itemLoc).isDirectory()) {
 
-                readDir(itemLoc,forItem);
+                readDir(itemLoc, forItem);
 
             }
+
+            // log the current item
+            forItem(itemLoc);
 
         });
 
@@ -33,8 +33,25 @@ readDir = function (dir, forItem) {
 
 };
 
+// call readDir with the given forItem method.
 readDir('./source', function (itemLoc) {
 
-    console.log( itemLoc.match(matchPat) );
+    // if there is a match
+    if (itemLoc.match(matchPat)) {
+
+        console.log(itemLoc.match(matchPat));
+
+        // unlink (delete)
+        fs.unlink(itemLoc, function (e) {
+
+            if (e) {
+
+                console.log(e);
+
+            }
+
+        });
+
+    }
 
 });
