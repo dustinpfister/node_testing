@@ -16,15 +16,44 @@ var readFoo = new Promise(function (resolve, reject) {
 
         });
 
+    }),
+
+writeFoo = new Promise(function (reslove, reject) {
+
+        fs.writeFile('./foo.txt', 'foobar', 'utf8', function (e) {
+
+            if (e) {
+
+                reject(e);
+
+            } else {
+
+                reslove();
+
+            }
+
+        });
+
     });
 
-readFoo.then(function () {
+readFoo.then(function (data) {
 
-    console.log('yes file!');
+    console.log('yes, we have foo.txt!');
+    console.log(data);
 
 }).catch (function (e) {
 
-    console.log('file foo not found');
-    console.log(e);
+    console.log('file foo not found, writing...');
+
+    writeFoo.then(function () {
+
+        console.log('foo.txt is alive.');
+
+    }).catch (function (e) {
+
+        console.log('error writing foo.txt');
+        console.log(e);
+
+    });
 
 });
