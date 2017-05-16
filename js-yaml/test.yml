@@ -1,0 +1,8 @@
+
+company-name: Mikes hot sauces
+
+options :
+
+   auto-deploy : false
+   spell-check : true
+   hot-sauce : extra hot
