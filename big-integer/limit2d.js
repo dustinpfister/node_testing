@@ -28,19 +28,23 @@ var img = {
 
         return bigInt(dataArray.join(''), this.depth).toString();
 
+    },
+
+    getPer : function (index) {
+
+        if (typeof index != 'object') {
+
+            index = bigInt(index);
+
+        }
+
+        return bigInt(this.getLimit()).divide(index).toString();
+
     }
-	
-	/*
-	getPer : function(index){
-		
-		return bigInt
-		
-	}
-	*/
 
 };
 
-console.log();
+console.log(img.getPer(8));
 
 //console.log(bigInt(['1','0','0','0'].join(''),2).toString());
 
