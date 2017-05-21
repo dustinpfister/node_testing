@@ -5,9 +5,17 @@ var req = http.request({
     method : 'GET',
     path : '/'
 
-}, function (err, one, two) {
+}, function (res) {
 
-    console.log(err);
+    res.on('data', function(){
+		
+		
+	});
+	
+	res.on('end', function(){
+		
+		
+	});
 
 });
 
