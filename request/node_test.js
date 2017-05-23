@@ -1,22 +1,21 @@
-var http = require('http');
+var http = require('http'),
 
-var req = http.request({
-    host : 'www.google.com',
-    method : 'GET',
-    path : '/'
+req = http.request({
+        host : 'www.google.com',
+        method : 'GET',
+        path : '/'
 
-}, function (res) {
+    }, function (res) {
 
-    res.on('data', function(){
-		
-		
-	});
-	
-	res.on('end', function(){
-		
-		
-	});
+        res.on('data', function (data) {
 
-});
+            var html = data.toString();
+
+            // Log The raw HTML
+            console.log(html);
+
+        });
+
+    });
 
 req.end();

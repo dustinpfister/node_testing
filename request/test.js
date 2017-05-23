@@ -1,5 +1,5 @@
 var request = require('request');
-request('http://www.google.com', function (err, res, body) {
+request('http://www.google.com', function (err, res, html) {
  
     if(err){
  
@@ -7,7 +7,8 @@ request('http://www.google.com', function (err, res, body) {
  
     }else{
  
-        console.log(body);
+        // logg the raw HTML
+        console.log(html);
  
     }
  
