@@ -4,6 +4,7 @@ var traverse = require('traverse'),
 foo = {
 
     bar : 'foo',
+    barfoo : false,
 
     foobar : {
 
@@ -20,16 +21,16 @@ foo = {
 };
 
 // walk the object with forEach
-traverse(foo).forEach(function (node,i,a) {
+traverse(foo).forEach(function (node) {
 
-    if(node === 42){
-		
-		console.log('The anwser has been found!');
-		
-		console.log('forEach aurgs');
-		console.log('node: ' + node); // the answer
-		console.log('path: ' + this.path.join('/')); // the way to the answer
-		
-	}
+    if (node === 42) {
+
+        console.log('The anwser has been found!');
+
+        console.log('forEach aurgs');
+        console.log('node: ' + node); // the answer
+        console.log('path: ' + this.path.join('/')); // the way to the answer
+
+    }
 
 });
