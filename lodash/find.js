@@ -1,11 +1,74 @@
 var _ = require('lodash');
 
-var db = [
-    {id : 17, name : 'joe'},
-    {id : 12, name : 'jake'},
-    {id : 10, name : 'emme'}
-];
+var db_obj = {
 
-var q = _.find(db,function(obj){ return obj.name === 'jake';});
+    dave : {
 
-console.log(q);
+        sex : 'male',
+        age : 34,
+        skills : ['html','css','js_core','js_client','js_nodejs']
+
+    },
+
+    jake : {
+
+        sex : 'male',
+        age : 22,
+        employed : false,
+        skills : ['js_core','js_nodejs','C','C++','C#']
+
+    },
+
+    jane : {
+
+        sex : 'female',
+        age : 27,
+        employed : true,
+        skills : ['html','css','js_core','js_client','java','ruby','python']
+
+    }
+
+};
+
+var db_array = [
+
+    {
+        name : 'Dave',
+        sex : 'male',
+        age : 34
+    },
+
+    {
+        name: 'Jake',
+        sex : 'male',
+        age : 22
+    },
+
+    {
+        name :'Jane',
+        sex : 'female',
+        age : 27
+    }
+
+],
+
+// wheres Dave?
+name = 'Dave',
+/*
+q = _.find(db_array, function (obj) {
+    return obj.name === name;
+});
+*/
+q = _.find(db_array, {name:'Dave'});
+
+console.log(q); // {name:'Dave',sex:male,age:34}
+
+
+var words = ['foo','man','chew'];
+
+console.log(_.find(words,function(obj){
+	
+	return obj == 'man';
+	//console.log(obj);
+	
+}));
