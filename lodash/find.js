@@ -6,6 +6,6 @@ var db = [
     {id : 10, name : 'emme'}
 ];
 
-var i = _.findIndex(db,function(obj){ return obj.name == 'jake';});
+var q = _.find(db,function(obj){ return obj.name === 'jake';});
 
-console.log(db[i]);
+console.log(q);
