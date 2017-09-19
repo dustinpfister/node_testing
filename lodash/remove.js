@@ -13,7 +13,7 @@ _.remove(arr, function (el) {
 console.log(arr); // ['foo','man',chew];
 */
 
-var enemys = [{
+var enemy = [{
         id : 'en_1',
         hp : 12,
         maxHP : 50
@@ -29,11 +29,11 @@ var enemys = [{
 ];
 
 
-_.remove(enemys, function (e) {
-
-    // remove all dead enemys
+// remove all dead enemies
+_.remove(enemy, function (e) {
     return e.hp <= 0;
-
 });
 
-console.log(enemys); // ['foo','man',chew];
+console.log(enemy);
+// [ { id: 'en_1', hp: 12, maxHP: 50 },
+//  { id: 'en_3', hp: 50, maxHP: 50 } ]
