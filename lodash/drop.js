@@ -2,7 +2,9 @@ var _ = require('lodash');
 
 var arr = [1,2,3,4,5,6],
 
-newArr = _.drop(arr,3);
+//newArr = _.drop(arr,3);
+
+newArr = arr.slice(3,arr.length);
 
 // the new Array is what remains
 console.log(newArr); // [4,5,6]
