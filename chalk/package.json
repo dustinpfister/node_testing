@@ -4,7 +4,7 @@
   "description": "",
   "main": "red-text-demo.js",
   "dependencies": {
-    "chalk": "^1.1.3"
+    "chalk": "^2.3.0"
   },
   "devDependencies": {},
   "scripts": {

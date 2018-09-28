@@ -9,3 +9,6 @@ if (chalk.supportsColor) {
     console.log('sorry the terminal does not support color.');
 
 }
+
+// the color level (0 - 3)
+console.log('color level: ' + chalk.level);
